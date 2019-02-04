@@ -1,0 +1,2267 @@
+
+pov_2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000f62  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000001f8  00800060  00000f62  00000ff6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800258  00800258  000011ee  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000011ee  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001220  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000020  00000000  00000000  0000125c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000e2d  00000000  00000000  0000127c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000055b  00000000  00000000  000020a9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000867  00000000  00000000  00002604  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000038  00000000  00000000  00002e6c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000335  00000000  00000000  00002ea4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000798  00000000  00000000  000031d9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000010  00000000  00000000  00003971  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	12 e0       	ldi	r17, 0x02	; 2
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e2 e6       	ldi	r30, 0x62	; 98
+  3a:	ff e0       	ldi	r31, 0x0F	; 15
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a8 35       	cpi	r26, 0x58	; 88
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	22 e0       	ldi	r18, 0x02	; 2
+  4a:	a8 e5       	ldi	r26, 0x58	; 88
+  4c:	b2 e0       	ldi	r27, 0x02	; 2
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	aa 35       	cpi	r26, 0x5A	; 90
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	02 d0       	rcall	.+4      	; 0x5e <main>
+  5a:	81 c7       	rjmp	.+3842   	; 0xf5e <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <main>:
+#define LED7 PINC2
+#define LED8 PINC1
+
+int i;
+int main(void)
+{   int ab[] = {0x1E,0x00,0x00,0x00,0x00,0x00,0x1E};
+  5e:	cf 93       	push	r28
+  60:	df 93       	push	r29
+  62:	cd b7       	in	r28, 0x3d	; 61
+  64:	de b7       	in	r29, 0x3e	; 62
+  66:	c8 5d       	subi	r28, 0xD8	; 216
+  68:	d2 40       	sbci	r29, 0x02	; 2
+  6a:	0f b6       	in	r0, 0x3f	; 63
+  6c:	f8 94       	cli
+  6e:	de bf       	out	0x3e, r29	; 62
+  70:	0f be       	out	0x3f, r0	; 63
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	8e e0       	ldi	r24, 0x0E	; 14
+  76:	e0 e6       	ldi	r30, 0x60	; 96
+  78:	f0 e0       	ldi	r31, 0x00	; 0
+  7a:	de 01       	movw	r26, r28
+  7c:	11 96       	adiw	r26, 0x01	; 1
+  7e:	01 90       	ld	r0, Z+
+  80:	0d 92       	st	X+, r0
+  82:	8a 95       	dec	r24
+  84:	e1 f7       	brne	.-8      	; 0x7e <main+0x20>
+	int ac[] = {0b0011110,0b0010010,0b0010010,0b0010010,0b0010010,0b0010010,0b0011110};
+  86:	8e e0       	ldi	r24, 0x0E	; 14
+  88:	ee e6       	ldi	r30, 0x6E	; 110
+  8a:	f0 e0       	ldi	r31, 0x00	; 0
+  8c:	de 01       	movw	r26, r28
+  8e:	1f 96       	adiw	r26, 0x0f	; 15
+  90:	01 90       	ld	r0, Z+
+  92:	0d 92       	st	X+, r0
+  94:	8a 95       	dec	r24
+  96:	e1 f7       	brne	.-8      	; 0x90 <main+0x32>
+	int bb[] = {0x0C,0x12,0x12,0x12,0x12,0x12,0x1E};
+  98:	8e e0       	ldi	r24, 0x0E	; 14
+  9a:	ec e7       	ldi	r30, 0x7C	; 124
+  9c:	f0 e0       	ldi	r31, 0x00	; 0
+  9e:	de 01       	movw	r26, r28
+  a0:	5d 96       	adiw	r26, 0x1d	; 29
+  a2:	01 90       	ld	r0, Z+
+  a4:	0d 92       	st	X+, r0
+  a6:	8a 95       	dec	r24
+  a8:	e1 f7       	brne	.-8      	; 0xa2 <main+0x44>
+	int bc[] = {0b0001100,0b0001100,0b0001100,0b0001100,0b0001100,0b0001100,0b0011110};
+  aa:	8e e0       	ldi	r24, 0x0E	; 14
+  ac:	ea e8       	ldi	r30, 0x8A	; 138
+  ae:	f0 e0       	ldi	r31, 0x00	; 0
+  b0:	de 01       	movw	r26, r28
+  b2:	9b 96       	adiw	r26, 0x2b	; 43
+  b4:	01 90       	ld	r0, Z+
+  b6:	0d 92       	st	X+, r0
+  b8:	8a 95       	dec	r24
+  ba:	e1 f7       	brne	.-8      	; 0xb4 <main+0x56>
+	int cb[] = {0x02,0x02,0x02,0x02,0x02,0x04,0x18};
+  bc:	8e e0       	ldi	r24, 0x0E	; 14
+  be:	e8 e9       	ldi	r30, 0x98	; 152
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  c2:	de 01       	movw	r26, r28
+  c4:	d9 96       	adiw	r26, 0x39	; 57
+  c6:	01 90       	ld	r0, Z+
+  c8:	0d 92       	st	X+, r0
+  ca:	8a 95       	dec	r24
+  cc:	e1 f7       	brne	.-8      	; 0xc6 <main+0x68>
+	int cc[] = {0b0000010,0b0000010,0b0000010,0b0000010,0b0000010,0b0000100,0b0011000};
+  ce:	8e e0       	ldi	r24, 0x0E	; 14
+  d0:	e8 e9       	ldi	r30, 0x98	; 152
+  d2:	f0 e0       	ldi	r31, 0x00	; 0
+  d4:	de 01       	movw	r26, r28
+  d6:	a9 5b       	subi	r26, 0xB9	; 185
+  d8:	bf 4f       	sbci	r27, 0xFF	; 255
+  da:	01 90       	ld	r0, Z+
+  dc:	0d 92       	st	X+, r0
+  de:	8a 95       	dec	r24
+  e0:	e1 f7       	brne	.-8      	; 0xda <main+0x7c>
+	int db[] = {0x18,0x04,0x02,0x02,0x02,0x1E,0x1E};
+  e2:	8e e0       	ldi	r24, 0x0E	; 14
+  e4:	e6 ea       	ldi	r30, 0xA6	; 166
+  e6:	f0 e0       	ldi	r31, 0x00	; 0
+  e8:	de 01       	movw	r26, r28
+  ea:	ab 5a       	subi	r26, 0xAB	; 171
+  ec:	bf 4f       	sbci	r27, 0xFF	; 255
+  ee:	01 90       	ld	r0, Z+
+  f0:	0d 92       	st	X+, r0
+  f2:	8a 95       	dec	r24
+  f4:	e1 f7       	brne	.-8      	; 0xee <main+0x90>
+	int dc[] = {0b0011000,0b0000100,0b0000010,0b0000010,0b0000010,0b0011110,0b0011110};
+  f6:	8e e0       	ldi	r24, 0x0E	; 14
+  f8:	e6 ea       	ldi	r30, 0xA6	; 166
+  fa:	f0 e0       	ldi	r31, 0x00	; 0
+  fc:	de 01       	movw	r26, r28
+  fe:	ad 59       	subi	r26, 0x9D	; 157
+ 100:	bf 4f       	sbci	r27, 0xFF	; 255
+ 102:	01 90       	ld	r0, Z+
+ 104:	0d 92       	st	X+, r0
+ 106:	8a 95       	dec	r24
+ 108:	e1 f7       	brne	.-8      	; 0x102 <main+0xa4>
+	int eb[] = {0x12,0x12,0x12,0x12,0x12,0x1E,0x1E};
+ 10a:	8e e0       	ldi	r24, 0x0E	; 14
+ 10c:	e4 eb       	ldi	r30, 0xB4	; 180
+ 10e:	f0 e0       	ldi	r31, 0x00	; 0
+ 110:	de 01       	movw	r26, r28
+ 112:	af 58       	subi	r26, 0x8F	; 143
+ 114:	bf 4f       	sbci	r27, 0xFF	; 255
+ 116:	01 90       	ld	r0, Z+
+ 118:	0d 92       	st	X+, r0
+ 11a:	8a 95       	dec	r24
+ 11c:	e1 f7       	brne	.-8      	; 0x116 <main+0xb8>
+	int ec[] = {0b0010010,0b0010010,0b0010010,0b0010010,0b0010010,0b0011110,0b0011110}; 	  			
+ 11e:	8e e0       	ldi	r24, 0x0E	; 14
+ 120:	e4 eb       	ldi	r30, 0xB4	; 180
+ 122:	f0 e0       	ldi	r31, 0x00	; 0
+ 124:	de 01       	movw	r26, r28
+ 126:	a1 58       	subi	r26, 0x81	; 129
+ 128:	bf 4f       	sbci	r27, 0xFF	; 255
+ 12a:	01 90       	ld	r0, Z+
+ 12c:	0d 92       	st	X+, r0
+ 12e:	8a 95       	dec	r24
+ 130:	e1 f7       	brne	.-8      	; 0x12a <main+0xcc>
+    int fb[] = {0x10,0x10,0x10,0x10,0x10,0x1E,0x1E};
+ 132:	8e e0       	ldi	r24, 0x0E	; 14
+ 134:	e2 ec       	ldi	r30, 0xC2	; 194
+ 136:	f0 e0       	ldi	r31, 0x00	; 0
+ 138:	de 01       	movw	r26, r28
+ 13a:	a3 57       	subi	r26, 0x73	; 115
+ 13c:	bf 4f       	sbci	r27, 0xFF	; 255
+ 13e:	01 90       	ld	r0, Z+
+ 140:	0d 92       	st	X+, r0
+ 142:	8a 95       	dec	r24
+ 144:	e1 f7       	brne	.-8      	; 0x13e <main+0xe0>
+	int fc[] = {0b0000110,0b0000110,0b0000110,0b0000110,0b0000110,0b0011110,0b0011110};
+ 146:	8e e0       	ldi	r24, 0x0E	; 14
+ 148:	e0 ed       	ldi	r30, 0xD0	; 208
+ 14a:	f0 e0       	ldi	r31, 0x00	; 0
+ 14c:	de 01       	movw	r26, r28
+ 14e:	a5 56       	subi	r26, 0x65	; 101
+ 150:	bf 4f       	sbci	r27, 0xFF	; 255
+ 152:	01 90       	ld	r0, Z+
+ 154:	0d 92       	st	X+, r0
+ 156:	8a 95       	dec	r24
+ 158:	e1 f7       	brne	.-8      	; 0x152 <main+0xf4>
+	int gb[] = {0x1E,0x12,0x12,0x02,0x02,0x04,0x18};
+ 15a:	8e e0       	ldi	r24, 0x0E	; 14
+ 15c:	ee ed       	ldi	r30, 0xDE	; 222
+ 15e:	f0 e0       	ldi	r31, 0x00	; 0
+ 160:	de 01       	movw	r26, r28
+ 162:	a7 55       	subi	r26, 0x57	; 87
+ 164:	bf 4f       	sbci	r27, 0xFF	; 255
+ 166:	01 90       	ld	r0, Z+
+ 168:	0d 92       	st	X+, r0
+ 16a:	8a 95       	dec	r24
+ 16c:	e1 f7       	brne	.-8      	; 0x166 <main+0x108>
+	int gc[] = {0b0000100,0b0000010,0b0000010,0b0000010,0b0000010,0b0000100,0b0011000};
+ 16e:	8e e0       	ldi	r24, 0x0E	; 14
+ 170:	ec ee       	ldi	r30, 0xEC	; 236
+ 172:	f0 e0       	ldi	r31, 0x00	; 0
+ 174:	de 01       	movw	r26, r28
+ 176:	a9 54       	subi	r26, 0x49	; 73
+ 178:	bf 4f       	sbci	r27, 0xFF	; 255
+ 17a:	01 90       	ld	r0, Z+
+ 17c:	0d 92       	st	X+, r0
+ 17e:	8a 95       	dec	r24
+ 180:	e1 f7       	brne	.-8      	; 0x17a <main+0x11c>
+	int hb[] = {0x1E,0x1E,0x10,0x10,0x10,0x1E,0x1E};
+ 182:	8e e0       	ldi	r24, 0x0E	; 14
+ 184:	ea ef       	ldi	r30, 0xFA	; 250
+ 186:	f0 e0       	ldi	r31, 0x00	; 0
+ 188:	de 01       	movw	r26, r28
+ 18a:	ab 53       	subi	r26, 0x3B	; 59
+ 18c:	bf 4f       	sbci	r27, 0xFF	; 255
+ 18e:	01 90       	ld	r0, Z+
+ 190:	0d 92       	st	X+, r0
+ 192:	8a 95       	dec	r24
+ 194:	e1 f7       	brne	.-8      	; 0x18e <main+0x130>
+	int hc[] = {0b0011110,0b0011110,0b0010000,0b0010000,0b0010000,0b0011110,0b0011110};
+ 196:	8e e0       	ldi	r24, 0x0E	; 14
+ 198:	ea ef       	ldi	r30, 0xFA	; 250
+ 19a:	f0 e0       	ldi	r31, 0x00	; 0
+ 19c:	de 01       	movw	r26, r28
+ 19e:	ad 52       	subi	r26, 0x2D	; 45
+ 1a0:	bf 4f       	sbci	r27, 0xFF	; 255
+ 1a2:	01 90       	ld	r0, Z+
+ 1a4:	0d 92       	st	X+, r0
+ 1a6:	8a 95       	dec	r24
+ 1a8:	e1 f7       	brne	.-8      	; 0x1a2 <main+0x144>
+	int ib[] = {0x02,0x02,0x02,0x1E,0x02,0x02,0x02};
+ 1aa:	8e e0       	ldi	r24, 0x0E	; 14
+ 1ac:	e8 e0       	ldi	r30, 0x08	; 8
+ 1ae:	f1 e0       	ldi	r31, 0x01	; 1
+ 1b0:	de 01       	movw	r26, r28
+ 1b2:	af 51       	subi	r26, 0x1F	; 31
+ 1b4:	bf 4f       	sbci	r27, 0xFF	; 255
+ 1b6:	01 90       	ld	r0, Z+
+ 1b8:	0d 92       	st	X+, r0
+ 1ba:	8a 95       	dec	r24
+ 1bc:	e1 f7       	brne	.-8      	; 0x1b6 <main+0x158>
+	int ic[] = {0b0000010,0b0000010,0b0000010,0b0011110,0b0000010,0b0000010,0b0000010};
+ 1be:	8e e0       	ldi	r24, 0x0E	; 14
+ 1c0:	e8 e0       	ldi	r30, 0x08	; 8
+ 1c2:	f1 e0       	ldi	r31, 0x01	; 1
+ 1c4:	de 01       	movw	r26, r28
+ 1c6:	a1 51       	subi	r26, 0x11	; 17
+ 1c8:	bf 4f       	sbci	r27, 0xFF	; 255
+ 1ca:	01 90       	ld	r0, Z+
+ 1cc:	0d 92       	st	X+, r0
+ 1ce:	8a 95       	dec	r24
+ 1d0:	e1 f7       	brne	.-8      	; 0x1ca <main+0x16c>
+	int jb[] = {0x00,0x00,0x00,0x1C,0x02,0x02,0x04};
+ 1d2:	8e e0       	ldi	r24, 0x0E	; 14
+ 1d4:	e6 e1       	ldi	r30, 0x16	; 22
+ 1d6:	f1 e0       	ldi	r31, 0x01	; 1
+ 1d8:	de 01       	movw	r26, r28
+ 1da:	a3 50       	subi	r26, 0x03	; 3
+ 1dc:	bf 4f       	sbci	r27, 0xFF	; 255
+ 1de:	01 90       	ld	r0, Z+
+ 1e0:	0d 92       	st	X+, r0
+ 1e2:	8a 95       	dec	r24
+ 1e4:	e1 f7       	brne	.-8      	; 0x1de <main+0x180>
+	int jc[] = {0b0000010,0b0000010,0b0000010,0b0011110,0b0000010,0b0000010,0b0000010};
+ 1e6:	8e e0       	ldi	r24, 0x0E	; 14
+ 1e8:	e8 e0       	ldi	r30, 0x08	; 8
+ 1ea:	f1 e0       	ldi	r31, 0x01	; 1
+ 1ec:	de 01       	movw	r26, r28
+ 1ee:	a5 5f       	subi	r26, 0xF5	; 245
+ 1f0:	be 4f       	sbci	r27, 0xFE	; 254
+ 1f2:	01 90       	ld	r0, Z+
+ 1f4:	0d 92       	st	X+, r0
+ 1f6:	8a 95       	dec	r24
+ 1f8:	e1 f7       	brne	.-8      	; 0x1f2 <main+0x194>
+	int kb[] = {0x04,0x02,0x04,0x08,0x10,0x1E,0x1E};
+ 1fa:	8e e0       	ldi	r24, 0x0E	; 14
+ 1fc:	e4 e2       	ldi	r30, 0x24	; 36
+ 1fe:	f1 e0       	ldi	r31, 0x01	; 1
+ 200:	de 01       	movw	r26, r28
+ 202:	a7 5e       	subi	r26, 0xE7	; 231
+ 204:	be 4f       	sbci	r27, 0xFE	; 254
+ 206:	01 90       	ld	r0, Z+
+ 208:	0d 92       	st	X+, r0
+ 20a:	8a 95       	dec	r24
+ 20c:	e1 f7       	brne	.-8      	; 0x206 <main+0x1a8>
+	int kc[] = {0b0000010,0b0000010,0b0000100,0b0001000,0b0010000,0b0011110,0b0011110};
+ 20e:	8e e0       	ldi	r24, 0x0E	; 14
+ 210:	e2 e3       	ldi	r30, 0x32	; 50
+ 212:	f1 e0       	ldi	r31, 0x01	; 1
+ 214:	de 01       	movw	r26, r28
+ 216:	a9 5d       	subi	r26, 0xD9	; 217
+ 218:	be 4f       	sbci	r27, 0xFE	; 254
+ 21a:	01 90       	ld	r0, Z+
+ 21c:	0d 92       	st	X+, r0
+ 21e:	8a 95       	dec	r24
+ 220:	e1 f7       	brne	.-8      	; 0x21a <main+0x1bc>
+	int lb[] = {0x02,0x02,0x02,0x02,0x02,0x1E,0x1E};
+ 222:	8e e0       	ldi	r24, 0x0E	; 14
+ 224:	e0 e4       	ldi	r30, 0x40	; 64
+ 226:	f1 e0       	ldi	r31, 0x01	; 1
+ 228:	de 01       	movw	r26, r28
+ 22a:	ab 5c       	subi	r26, 0xCB	; 203
+ 22c:	be 4f       	sbci	r27, 0xFE	; 254
+ 22e:	01 90       	ld	r0, Z+
+ 230:	0d 92       	st	X+, r0
+ 232:	8a 95       	dec	r24
+ 234:	e1 f7       	brne	.-8      	; 0x22e <main+0x1d0>
+	int lc[] = {0b0000000,0b0000000,0b0000000,0b0000000,0b0000000,0b0011110,0b0011110};
+ 236:	8e e0       	ldi	r24, 0x0E	; 14
+ 238:	ee e4       	ldi	r30, 0x4E	; 78
+ 23a:	f1 e0       	ldi	r31, 0x01	; 1
+ 23c:	de 01       	movw	r26, r28
+ 23e:	ad 5b       	subi	r26, 0xBD	; 189
+ 240:	be 4f       	sbci	r27, 0xFE	; 254
+ 242:	01 90       	ld	r0, Z+
+ 244:	0d 92       	st	X+, r0
+ 246:	8a 95       	dec	r24
+ 248:	e1 f7       	brne	.-8      	; 0x242 <main+0x1e4>
+	int mb[] = {0x1E,0x00,0x00,0x00,0x00,0x00,0x1E};
+ 24a:	8e e0       	ldi	r24, 0x0E	; 14
+ 24c:	e0 e6       	ldi	r30, 0x60	; 96
+ 24e:	f0 e0       	ldi	r31, 0x00	; 0
+ 250:	de 01       	movw	r26, r28
+ 252:	af 5a       	subi	r26, 0xAF	; 175
+ 254:	be 4f       	sbci	r27, 0xFE	; 254
+ 256:	01 90       	ld	r0, Z+
+ 258:	0d 92       	st	X+, r0
+ 25a:	8a 95       	dec	r24
+ 25c:	e1 f7       	brne	.-8      	; 0x256 <main+0x1f8>
+	int mc[] = {0b0011110,0b0000100,0b0001000,0b0010000,0b0001000,0b0000100,0b0011110};
+ 25e:	8e e0       	ldi	r24, 0x0E	; 14
+ 260:	ec e5       	ldi	r30, 0x5C	; 92
+ 262:	f1 e0       	ldi	r31, 0x01	; 1
+ 264:	de 01       	movw	r26, r28
+ 266:	a1 5a       	subi	r26, 0xA1	; 161
+ 268:	be 4f       	sbci	r27, 0xFE	; 254
+ 26a:	01 90       	ld	r0, Z+
+ 26c:	0d 92       	st	X+, r0
+ 26e:	8a 95       	dec	r24
+ 270:	e1 f7       	brne	.-8      	; 0x26a <main+0x20c>
+	int nb[] = {0x1E,0x0E,0x10,0x00,0x00,0x00,0x1E};
+ 272:	8e e0       	ldi	r24, 0x0E	; 14
+ 274:	ea e6       	ldi	r30, 0x6A	; 106
+ 276:	f1 e0       	ldi	r31, 0x01	; 1
+ 278:	de 01       	movw	r26, r28
+ 27a:	a3 59       	subi	r26, 0x93	; 147
+ 27c:	be 4f       	sbci	r27, 0xFE	; 254
+ 27e:	01 90       	ld	r0, Z+
+ 280:	0d 92       	st	X+, r0
+ 282:	8a 95       	dec	r24
+ 284:	e1 f7       	brne	.-8      	; 0x27e <main+0x220>
+	int nc[] = {0b0011110,0b0000000,0b0000000,0b0010000,0b0001000,0b0000110,0b0011110};
+ 286:	8e e0       	ldi	r24, 0x0E	; 14
+ 288:	e8 e7       	ldi	r30, 0x78	; 120
+ 28a:	f1 e0       	ldi	r31, 0x01	; 1
+ 28c:	de 01       	movw	r26, r28
+ 28e:	a5 58       	subi	r26, 0x85	; 133
+ 290:	be 4f       	sbci	r27, 0xFE	; 254
+ 292:	01 90       	ld	r0, Z+
+ 294:	0d 92       	st	X+, r0
+ 296:	8a 95       	dec	r24
+ 298:	e1 f7       	brne	.-8      	; 0x292 <main+0x234>
+	int ob[] = {0x18,0x04,0x02,0x02,0x02,0x04,0x18};
+ 29a:	8e e0       	ldi	r24, 0x0E	; 14
+ 29c:	e6 e8       	ldi	r30, 0x86	; 134
+ 29e:	f1 e0       	ldi	r31, 0x01	; 1
+ 2a0:	de 01       	movw	r26, r28
+ 2a2:	a7 57       	subi	r26, 0x77	; 119
+ 2a4:	be 4f       	sbci	r27, 0xFE	; 254
+ 2a6:	01 90       	ld	r0, Z+
+ 2a8:	0d 92       	st	X+, r0
+ 2aa:	8a 95       	dec	r24
+ 2ac:	e1 f7       	brne	.-8      	; 0x2a6 <main+0x248>
+	int oc[] = {0b0011000,0b0000100,0b0000010,0b0000010,0b0000010,0b0000100,0b0011000};
+ 2ae:	8e e0       	ldi	r24, 0x0E	; 14
+ 2b0:	e6 e8       	ldi	r30, 0x86	; 134
+ 2b2:	f1 e0       	ldi	r31, 0x01	; 1
+ 2b4:	de 01       	movw	r26, r28
+ 2b6:	a9 56       	subi	r26, 0x69	; 105
+ 2b8:	be 4f       	sbci	r27, 0xFE	; 254
+ 2ba:	01 90       	ld	r0, Z+
+ 2bc:	0d 92       	st	X+, r0
+ 2be:	8a 95       	dec	r24
+ 2c0:	e1 f7       	brne	.-8      	; 0x2ba <main+0x25c>
+	int pb[] = {0x00,0x00,0x00,0x00,0x00,0x1E,0x1E};
+ 2c2:	8e e0       	ldi	r24, 0x0E	; 14
+ 2c4:	ee e4       	ldi	r30, 0x4E	; 78
+ 2c6:	f1 e0       	ldi	r31, 0x01	; 1
+ 2c8:	de 01       	movw	r26, r28
+ 2ca:	ab 55       	subi	r26, 0x5B	; 91
+ 2cc:	be 4f       	sbci	r27, 0xFE	; 254
+ 2ce:	01 90       	ld	r0, Z+
+ 2d0:	0d 92       	st	X+, r0
+ 2d2:	8a 95       	dec	r24
+ 2d4:	e1 f7       	brne	.-8      	; 0x2ce <main+0x270>
+	int pc[] = {0b0001100,0b0010010,0b0010010,0b0010010,0b0010010,0b0011110,0b0011110};
+ 2d6:	8e e0       	ldi	r24, 0x0E	; 14
+ 2d8:	e4 e9       	ldi	r30, 0x94	; 148
+ 2da:	f1 e0       	ldi	r31, 0x01	; 1
+ 2dc:	de 01       	movw	r26, r28
+ 2de:	ad 54       	subi	r26, 0x4D	; 77
+ 2e0:	be 4f       	sbci	r27, 0xFE	; 254
+ 2e2:	01 90       	ld	r0, Z+
+ 2e4:	0d 92       	st	X+, r0
+ 2e6:	8a 95       	dec	r24
+ 2e8:	e1 f7       	brne	.-8      	; 0x2e2 <main+0x284>
+	int qb[] = {0x1A,0x04,0x0A,0x12,0x02,0x04,0x18};
+ 2ea:	8e e0       	ldi	r24, 0x0E	; 14
+ 2ec:	e2 ea       	ldi	r30, 0xA2	; 162
+ 2ee:	f1 e0       	ldi	r31, 0x01	; 1
+ 2f0:	de 01       	movw	r26, r28
+ 2f2:	af 53       	subi	r26, 0x3F	; 63
+ 2f4:	be 4f       	sbci	r27, 0xFE	; 254
+ 2f6:	01 90       	ld	r0, Z+
+ 2f8:	0d 92       	st	X+, r0
+ 2fa:	8a 95       	dec	r24
+ 2fc:	e1 f7       	brne	.-8      	; 0x2f6 <main+0x298>
+	int qc[] = {0b0011000,0b0000010,0b0000010,0b0000010,0b0000010,0b0000100,0b0011000};		
+ 2fe:	8e e0       	ldi	r24, 0x0E	; 14
+ 300:	e0 eb       	ldi	r30, 0xB0	; 176
+ 302:	f1 e0       	ldi	r31, 0x01	; 1
+ 304:	de 01       	movw	r26, r28
+ 306:	a1 53       	subi	r26, 0x31	; 49
+ 308:	be 4f       	sbci	r27, 0xFE	; 254
+ 30a:	01 90       	ld	r0, Z+
+ 30c:	0d 92       	st	X+, r0
+ 30e:	8a 95       	dec	r24
+ 310:	e1 f7       	brne	.-8      	; 0x30a <main+0x2ac>
+	int rb[] = {0x06,0x04,0x08,0x10,0x00,0x1E,0x1E};
+ 312:	8e e0       	ldi	r24, 0x0E	; 14
+ 314:	ee eb       	ldi	r30, 0xBE	; 190
+ 316:	f1 e0       	ldi	r31, 0x01	; 1
+ 318:	de 01       	movw	r26, r28
+ 31a:	a3 52       	subi	r26, 0x23	; 35
+ 31c:	be 4f       	sbci	r27, 0xFE	; 254
+ 31e:	01 90       	ld	r0, Z+
+ 320:	0d 92       	st	X+, r0
+ 322:	8a 95       	dec	r24
+ 324:	e1 f7       	brne	.-8      	; 0x31e <main+0x2c0>
+	int rc[] = {0b0001100,0b0010010,0b0010010,0b0010010,0b0010010,0b0011110,0b0011110};
+ 326:	8e e0       	ldi	r24, 0x0E	; 14
+ 328:	e4 e9       	ldi	r30, 0x94	; 148
+ 32a:	f1 e0       	ldi	r31, 0x01	; 1
+ 32c:	de 01       	movw	r26, r28
+ 32e:	a5 51       	subi	r26, 0x15	; 21
+ 330:	be 4f       	sbci	r27, 0xFE	; 254
+ 332:	01 90       	ld	r0, Z+
+ 334:	0d 92       	st	X+, r0
+ 336:	8a 95       	dec	r24
+ 338:	e1 f7       	brne	.-8      	; 0x332 <main+0x2d4>
+	int sb[] = {0x1C,0x02,0x02,0x02,0x02,0x02,0x02};
+ 33a:	8e e0       	ldi	r24, 0x0E	; 14
+ 33c:	ec ec       	ldi	r30, 0xCC	; 204
+ 33e:	f1 e0       	ldi	r31, 0x01	; 1
+ 340:	de 01       	movw	r26, r28
+ 342:	a7 50       	subi	r26, 0x07	; 7
+ 344:	be 4f       	sbci	r27, 0xFE	; 254
+ 346:	01 90       	ld	r0, Z+
+ 348:	0d 92       	st	X+, r0
+ 34a:	8a 95       	dec	r24
+ 34c:	e1 f7       	brne	.-8      	; 0x346 <main+0x2e8>
+	int sc[] = {0b0000010,0b0010010,0b0010010,0b0010010,0b0010010,0b0010100,0b0001000};
+ 34e:	8e e0       	ldi	r24, 0x0E	; 14
+ 350:	ea ed       	ldi	r30, 0xDA	; 218
+ 352:	f1 e0       	ldi	r31, 0x01	; 1
+ 354:	de 01       	movw	r26, r28
+ 356:	a9 5f       	subi	r26, 0xF9	; 249
+ 358:	bd 4f       	sbci	r27, 0xFD	; 253
+ 35a:	01 90       	ld	r0, Z+
+ 35c:	0d 92       	st	X+, r0
+ 35e:	8a 95       	dec	r24
+ 360:	e1 f7       	brne	.-8      	; 0x35a <main+0x2fc>
+	int tb[] = {0x00,0x00,0x00,0x1E,0x00,0x00,0x00};	
+ 362:	cb 5e       	subi	r28, 0xEB	; 235
+ 364:	dd 4f       	sbci	r29, 0xFD	; 253
+ 366:	19 82       	std	Y+1, r1	; 0x01
+ 368:	18 82       	st	Y, r1
+ 36a:	c5 51       	subi	r28, 0x15	; 21
+ 36c:	d2 40       	sbci	r29, 0x02	; 2
+ 36e:	c9 5e       	subi	r28, 0xE9	; 233
+ 370:	dd 4f       	sbci	r29, 0xFD	; 253
+ 372:	19 82       	std	Y+1, r1	; 0x01
+ 374:	18 82       	st	Y, r1
+ 376:	c7 51       	subi	r28, 0x17	; 23
+ 378:	d2 40       	sbci	r29, 0x02	; 2
+ 37a:	c7 5e       	subi	r28, 0xE7	; 231
+ 37c:	dd 4f       	sbci	r29, 0xFD	; 253
+ 37e:	19 82       	std	Y+1, r1	; 0x01
+ 380:	18 82       	st	Y, r1
+ 382:	c9 51       	subi	r28, 0x19	; 25
+ 384:	d2 40       	sbci	r29, 0x02	; 2
+ 386:	8e e1       	ldi	r24, 0x1E	; 30
+ 388:	90 e0       	ldi	r25, 0x00	; 0
+ 38a:	c5 5e       	subi	r28, 0xE5	; 229
+ 38c:	dd 4f       	sbci	r29, 0xFD	; 253
+ 38e:	99 83       	std	Y+1, r25	; 0x01
+ 390:	88 83       	st	Y, r24
+ 392:	cb 51       	subi	r28, 0x1B	; 27
+ 394:	d2 40       	sbci	r29, 0x02	; 2
+ 396:	c3 5e       	subi	r28, 0xE3	; 227
+ 398:	dd 4f       	sbci	r29, 0xFD	; 253
+ 39a:	19 82       	std	Y+1, r1	; 0x01
+ 39c:	18 82       	st	Y, r1
+ 39e:	cd 51       	subi	r28, 0x1D	; 29
+ 3a0:	d2 40       	sbci	r29, 0x02	; 2
+ 3a2:	c1 5e       	subi	r28, 0xE1	; 225
+ 3a4:	dd 4f       	sbci	r29, 0xFD	; 253
+ 3a6:	19 82       	std	Y+1, r1	; 0x01
+ 3a8:	18 82       	st	Y, r1
+ 3aa:	cf 51       	subi	r28, 0x1F	; 31
+ 3ac:	d2 40       	sbci	r29, 0x02	; 2
+ 3ae:	cf 5d       	subi	r28, 0xDF	; 223
+ 3b0:	dd 4f       	sbci	r29, 0xFD	; 253
+ 3b2:	19 82       	std	Y+1, r1	; 0x01
+ 3b4:	18 82       	st	Y, r1
+ 3b6:	c1 52       	subi	r28, 0x21	; 33
+ 3b8:	d2 40       	sbci	r29, 0x02	; 2
+	int tc[] = {0b0000110,0b0000110,0b0000110,0b0011110,0b0000110,0b0000110,0b0000110};
+ 3ba:	2e e0       	ldi	r18, 0x0E	; 14
+ 3bc:	e8 ee       	ldi	r30, 0xE8	; 232
+ 3be:	f1 e0       	ldi	r31, 0x01	; 1
+ 3c0:	de 01       	movw	r26, r28
+ 3c2:	ad 5d       	subi	r26, 0xDD	; 221
+ 3c4:	bd 4f       	sbci	r27, 0xFD	; 253
+ 3c6:	01 90       	ld	r0, Z+
+ 3c8:	0d 92       	st	X+, r0
+ 3ca:	2a 95       	dec	r18
+ 3cc:	e1 f7       	brne	.-8      	; 0x3c6 <main+0x368>
+	int ub[] = {0x18,0x04,0x02,0x02,0x02,0x04,0x18};
+ 3ce:	2e e0       	ldi	r18, 0x0E	; 14
+ 3d0:	e6 e8       	ldi	r30, 0x86	; 134
+ 3d2:	f1 e0       	ldi	r31, 0x01	; 1
+ 3d4:	de 01       	movw	r26, r28
+ 3d6:	af 5c       	subi	r26, 0xCF	; 207
+ 3d8:	bd 4f       	sbci	r27, 0xFD	; 253
+ 3da:	01 90       	ld	r0, Z+
+ 3dc:	0d 92       	st	X+, r0
+ 3de:	2a 95       	dec	r18
+ 3e0:	e1 f7       	brne	.-8      	; 0x3da <main+0x37c>
+	int uc[] = {0b0011110,0b0000000,0b0000000,0b0000000,0b0000000,0b0000000,0b0011110};
+ 3e2:	2e e0       	ldi	r18, 0x0E	; 14
+ 3e4:	e0 e6       	ldi	r30, 0x60	; 96
+ 3e6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3e8:	de 01       	movw	r26, r28
+ 3ea:	a1 5c       	subi	r26, 0xC1	; 193
+ 3ec:	bd 4f       	sbci	r27, 0xFD	; 253
+ 3ee:	01 90       	ld	r0, Z+
+ 3f0:	0d 92       	st	X+, r0
+ 3f2:	2a 95       	dec	r18
+ 3f4:	e1 f7       	brne	.-8      	; 0x3ee <main+0x390>
+	int vb[] = {0x00,0x00,0x1C,0x06,0x1C,0x00,0x00};
+ 3f6:	2e e0       	ldi	r18, 0x0E	; 14
+ 3f8:	e6 ef       	ldi	r30, 0xF6	; 246
+ 3fa:	f1 e0       	ldi	r31, 0x01	; 1
+ 3fc:	de 01       	movw	r26, r28
+ 3fe:	a3 5b       	subi	r26, 0xB3	; 179
+ 400:	bd 4f       	sbci	r27, 0xFD	; 253
+ 402:	01 90       	ld	r0, Z+
+ 404:	0d 92       	st	X+, r0
+ 406:	2a 95       	dec	r18
+ 408:	e1 f7       	brne	.-8      	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
+	int vc[] = {0b0000110,0b0011000,0b0000000,0b0000000,0b0000000,0b0011000,0b0000110};
+ 40a:	2e e0       	ldi	r18, 0x0E	; 14
+ 40c:	e4 e0       	ldi	r30, 0x04	; 4
+ 40e:	f2 e0       	ldi	r31, 0x02	; 2
+ 410:	de 01       	movw	r26, r28
+ 412:	a5 5a       	subi	r26, 0xA5	; 165
+ 414:	bd 4f       	sbci	r27, 0xFD	; 253
+ 416:	01 90       	ld	r0, Z+
+ 418:	0d 92       	st	X+, r0
+ 41a:	2a 95       	dec	r18
+ 41c:	e1 f7       	brne	.-8      	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+	int wb[] = {0x1E,0x04,0x08,0x10,0x08,0x04,0x1E};
+ 41e:	2e e0       	ldi	r18, 0x0E	; 14
+ 420:	ec e5       	ldi	r30, 0x5C	; 92
+ 422:	f1 e0       	ldi	r31, 0x01	; 1
+ 424:	de 01       	movw	r26, r28
+ 426:	a7 59       	subi	r26, 0x97	; 151
+ 428:	bd 4f       	sbci	r27, 0xFD	; 253
+ 42a:	01 90       	ld	r0, Z+
+ 42c:	0d 92       	st	X+, r0
+ 42e:	2a 95       	dec	r18
+ 430:	e1 f7       	brne	.-8      	; 0x42a <__LOCK_REGION_LENGTH__+0x2a>
+	int wc[] = {0b0011110,0b0000000,0b0000000,0b0000000,0b0000000,0b0000000,0b0011110};
+ 432:	2e e0       	ldi	r18, 0x0E	; 14
+ 434:	e0 e6       	ldi	r30, 0x60	; 96
+ 436:	f0 e0       	ldi	r31, 0x00	; 0
+ 438:	de 01       	movw	r26, r28
+ 43a:	a9 58       	subi	r26, 0x89	; 137
+ 43c:	bd 4f       	sbci	r27, 0xFD	; 253
+ 43e:	01 90       	ld	r0, Z+
+ 440:	0d 92       	st	X+, r0
+ 442:	2a 95       	dec	r18
+ 444:	e1 f7       	brne	.-8      	; 0x43e <__LOCK_REGION_LENGTH__+0x3e>
+	int xb[] = {0x06,0x08,0x10,0x00,0x10,0x08,0x06};
+ 446:	2e e0       	ldi	r18, 0x0E	; 14
+ 448:	e2 e1       	ldi	r30, 0x12	; 18
+ 44a:	f2 e0       	ldi	r31, 0x02	; 2
+ 44c:	de 01       	movw	r26, r28
+ 44e:	ab 57       	subi	r26, 0x7B	; 123
+ 450:	bd 4f       	sbci	r27, 0xFD	; 253
+ 452:	01 90       	ld	r0, Z+
+ 454:	0d 92       	st	X+, r0
+ 456:	2a 95       	dec	r18
+ 458:	e1 f7       	brne	.-8      	; 0x452 <__LOCK_REGION_LENGTH__+0x52>
+	int xc[] = {0b0000010,0b0000100,0b0001000,0b0010000,0b0001000,0b0000100,0b0000010};
+ 45a:	2e e0       	ldi	r18, 0x0E	; 14
+ 45c:	e0 e2       	ldi	r30, 0x20	; 32
+ 45e:	f2 e0       	ldi	r31, 0x02	; 2
+ 460:	de 01       	movw	r26, r28
+ 462:	ad 56       	subi	r26, 0x6D	; 109
+ 464:	bd 4f       	sbci	r27, 0xFD	; 253
+ 466:	01 90       	ld	r0, Z+
+ 468:	0d 92       	st	X+, r0
+ 46a:	2a 95       	dec	r18
+ 46c:	e1 f7       	brne	.-8      	; 0x466 <__stack+0x7>
+	int yb[] = {0x00,0x00,0x00,0x1E,0x00,0x00,0x00};
+ 46e:	cf 55       	subi	r28, 0x5F	; 95
+ 470:	dd 4f       	sbci	r29, 0xFD	; 253
+ 472:	19 82       	std	Y+1, r1	; 0x01
+ 474:	18 82       	st	Y, r1
+ 476:	c1 5a       	subi	r28, 0xA1	; 161
+ 478:	d2 40       	sbci	r29, 0x02	; 2
+ 47a:	cd 55       	subi	r28, 0x5D	; 93
+ 47c:	dd 4f       	sbci	r29, 0xFD	; 253
+ 47e:	19 82       	std	Y+1, r1	; 0x01
+ 480:	18 82       	st	Y, r1
+ 482:	c3 5a       	subi	r28, 0xA3	; 163
+ 484:	d2 40       	sbci	r29, 0x02	; 2
+ 486:	cb 55       	subi	r28, 0x5B	; 91
+ 488:	dd 4f       	sbci	r29, 0xFD	; 253
+ 48a:	19 82       	std	Y+1, r1	; 0x01
+ 48c:	18 82       	st	Y, r1
+ 48e:	c5 5a       	subi	r28, 0xA5	; 165
+ 490:	d2 40       	sbci	r29, 0x02	; 2
+ 492:	c9 55       	subi	r28, 0x59	; 89
+ 494:	dd 4f       	sbci	r29, 0xFD	; 253
+ 496:	99 83       	std	Y+1, r25	; 0x01
+ 498:	88 83       	st	Y, r24
+ 49a:	c7 5a       	subi	r28, 0xA7	; 167
+ 49c:	d2 40       	sbci	r29, 0x02	; 2
+ 49e:	c7 55       	subi	r28, 0x57	; 87
+ 4a0:	dd 4f       	sbci	r29, 0xFD	; 253
+ 4a2:	19 82       	std	Y+1, r1	; 0x01
+ 4a4:	18 82       	st	Y, r1
+ 4a6:	c9 5a       	subi	r28, 0xA9	; 169
+ 4a8:	d2 40       	sbci	r29, 0x02	; 2
+ 4aa:	c5 55       	subi	r28, 0x55	; 85
+ 4ac:	dd 4f       	sbci	r29, 0xFD	; 253
+ 4ae:	19 82       	std	Y+1, r1	; 0x01
+ 4b0:	18 82       	st	Y, r1
+ 4b2:	cb 5a       	subi	r28, 0xAB	; 171
+ 4b4:	d2 40       	sbci	r29, 0x02	; 2
+ 4b6:	c3 55       	subi	r28, 0x53	; 83
+ 4b8:	dd 4f       	sbci	r29, 0xFD	; 253
+ 4ba:	19 82       	std	Y+1, r1	; 0x01
+ 4bc:	18 82       	st	Y, r1
+ 4be:	cd 5a       	subi	r28, 0xAD	; 173
+ 4c0:	d2 40       	sbci	r29, 0x02	; 2
+	int yc[] = {0b0000110,0b0001000,0b0010000,0b0010000,0b0010000,0b0001000,0b0000110};
+ 4c2:	8e e0       	ldi	r24, 0x0E	; 14
+ 4c4:	ee e2       	ldi	r30, 0x2E	; 46
+ 4c6:	f2 e0       	ldi	r31, 0x02	; 2
+ 4c8:	de 01       	movw	r26, r28
+ 4ca:	a1 55       	subi	r26, 0x51	; 81
+ 4cc:	bd 4f       	sbci	r27, 0xFD	; 253
+ 4ce:	01 90       	ld	r0, Z+
+ 4d0:	0d 92       	st	X+, r0
+ 4d2:	8a 95       	dec	r24
+ 4d4:	e1 f7       	brne	.-8      	; 0x4ce <__stack+0x6f>
+	int zb[] = {0x02,0x02,0x02,0x02,0x12,0x0A,0x06};
+ 4d6:	8e e0       	ldi	r24, 0x0E	; 14
+ 4d8:	ec e3       	ldi	r30, 0x3C	; 60
+ 4da:	f2 e0       	ldi	r31, 0x02	; 2
+ 4dc:	de 01       	movw	r26, r28
+ 4de:	a3 54       	subi	r26, 0x43	; 67
+ 4e0:	bd 4f       	sbci	r27, 0xFD	; 253
+ 4e2:	01 90       	ld	r0, Z+
+ 4e4:	0d 92       	st	X+, r0
+ 4e6:	8a 95       	dec	r24
+ 4e8:	e1 f7       	brne	.-8      	; 0x4e2 <__stack+0x83>
+	int zc[] = {0b0000110,0b0001010,0b0001010,0b0010010,0b0000010,0b0000010,0b0000010};																						
+ 4ea:	8e e0       	ldi	r24, 0x0E	; 14
+ 4ec:	ea e4       	ldi	r30, 0x4A	; 74
+ 4ee:	f2 e0       	ldi	r31, 0x02	; 2
+ 4f0:	de 01       	movw	r26, r28
+ 4f2:	a5 53       	subi	r26, 0x35	; 53
+ 4f4:	bd 4f       	sbci	r27, 0xFD	; 253
+ 4f6:	01 90       	ld	r0, Z+
+ 4f8:	0d 92       	st	X+, r0
+ 4fa:	8a 95       	dec	r24
+ 4fc:	e1 f7       	brne	.-8      	; 0x4f6 <__stack+0x97>
+		
+		
+   
+    while (1) 
+    {
+		for (i=0;i<7;i++){
+ 4fe:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 502:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 506:	80 e0       	ldi	r24, 0x00	; 0
+ 508:	90 e0       	ldi	r25, 0x00	; 0
+			//letter_a
+			PORTB =ab[i];
+ 50a:	88 0f       	add	r24, r24
+ 50c:	99 1f       	adc	r25, r25
+ 50e:	e1 e0       	ldi	r30, 0x01	; 1
+ 510:	f0 e0       	ldi	r31, 0x00	; 0
+ 512:	ec 0f       	add	r30, r28
+ 514:	fd 1f       	adc	r31, r29
+ 516:	e8 0f       	add	r30, r24
+ 518:	f9 1f       	adc	r31, r25
+ 51a:	80 81       	ld	r24, Z
+ 51c:	88 bb       	out	0x18, r24	; 24
+			PORTC =ac[i];
+ 51e:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 522:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 526:	ee 0f       	add	r30, r30
+ 528:	ff 1f       	adc	r31, r31
+ 52a:	81 e0       	ldi	r24, 0x01	; 1
+ 52c:	90 e0       	ldi	r25, 0x00	; 0
+ 52e:	8c 0f       	add	r24, r28
+ 530:	9d 1f       	adc	r25, r29
+ 532:	e8 0f       	add	r30, r24
+ 534:	f9 1f       	adc	r31, r25
+ 536:	86 85       	ldd	r24, Z+14	; 0x0e
+ 538:	85 bb       	out	0x15, r24	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 53a:	9f ef       	ldi	r25, 0xFF	; 255
+ 53c:	23 ec       	ldi	r18, 0xC3	; 195
+ 53e:	89 e0       	ldi	r24, 0x09	; 9
+ 540:	91 50       	subi	r25, 0x01	; 1
+ 542:	20 40       	sbci	r18, 0x00	; 0
+ 544:	80 40       	sbci	r24, 0x00	; 0
+ 546:	e1 f7       	brne	.-8      	; 0x540 <__stack+0xe1>
+ 548:	00 c0       	rjmp	.+0      	; 0x54a <__stack+0xeb>
+ 54a:	00 00       	nop
+		
+		
+   
+    while (1) 
+    {
+		for (i=0;i<7;i++){
+ 54c:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 550:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 554:	01 96       	adiw	r24, 0x01	; 1
+ 556:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 55a:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 55e:	87 30       	cpi	r24, 0x07	; 7
+ 560:	91 05       	cpc	r25, r1
+ 562:	9c f2       	brlt	.-90     	; 0x50a <__stack+0xab>
+			PORTB =ab[i];
+			PORTC =ac[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 564:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 568:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 56c:	80 e0       	ldi	r24, 0x00	; 0
+ 56e:	90 e0       	ldi	r25, 0x00	; 0
+			//letter_b
+			PORTB =bb[i];
+ 570:	88 0f       	add	r24, r24
+ 572:	99 1f       	adc	r25, r25
+ 574:	e1 e0       	ldi	r30, 0x01	; 1
+ 576:	f0 e0       	ldi	r31, 0x00	; 0
+ 578:	ec 0f       	add	r30, r28
+ 57a:	fd 1f       	adc	r31, r29
+ 57c:	e8 0f       	add	r30, r24
+ 57e:	f9 1f       	adc	r31, r25
+ 580:	84 8d       	ldd	r24, Z+28	; 0x1c
+ 582:	88 bb       	out	0x18, r24	; 24
+			PORTC =bc[i];
+ 584:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 588:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 58c:	ee 0f       	add	r30, r30
+ 58e:	ff 1f       	adc	r31, r31
+ 590:	81 e0       	ldi	r24, 0x01	; 1
+ 592:	90 e0       	ldi	r25, 0x00	; 0
+ 594:	8c 0f       	add	r24, r28
+ 596:	9d 1f       	adc	r25, r29
+ 598:	e8 0f       	add	r30, r24
+ 59a:	f9 1f       	adc	r31, r25
+ 59c:	82 a5       	ldd	r24, Z+42	; 0x2a
+ 59e:	85 bb       	out	0x15, r24	; 21
+ 5a0:	9f ef       	ldi	r25, 0xFF	; 255
+ 5a2:	23 ec       	ldi	r18, 0xC3	; 195
+ 5a4:	89 e0       	ldi	r24, 0x09	; 9
+ 5a6:	91 50       	subi	r25, 0x01	; 1
+ 5a8:	20 40       	sbci	r18, 0x00	; 0
+ 5aa:	80 40       	sbci	r24, 0x00	; 0
+ 5ac:	e1 f7       	brne	.-8      	; 0x5a6 <__stack+0x147>
+ 5ae:	00 c0       	rjmp	.+0      	; 0x5b0 <__stack+0x151>
+ 5b0:	00 00       	nop
+			PORTB =ab[i];
+			PORTC =ac[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 5b2:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 5b6:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 5ba:	01 96       	adiw	r24, 0x01	; 1
+ 5bc:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 5c0:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 5c4:	87 30       	cpi	r24, 0x07	; 7
+ 5c6:	91 05       	cpc	r25, r1
+ 5c8:	9c f2       	brlt	.-90     	; 0x570 <__stack+0x111>
+			PORTB =bb[i];
+			PORTC =bc[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 5ca:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 5ce:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 5d2:	80 e0       	ldi	r24, 0x00	; 0
+ 5d4:	90 e0       	ldi	r25, 0x00	; 0
+			//letter_c
+			PORTB =cb[i];
+ 5d6:	88 0f       	add	r24, r24
+ 5d8:	99 1f       	adc	r25, r25
+ 5da:	e1 e0       	ldi	r30, 0x01	; 1
+ 5dc:	f0 e0       	ldi	r31, 0x00	; 0
+ 5de:	ec 0f       	add	r30, r28
+ 5e0:	fd 1f       	adc	r31, r29
+ 5e2:	e8 0f       	add	r30, r24
+ 5e4:	f9 1f       	adc	r31, r25
+ 5e6:	80 ad       	ldd	r24, Z+56	; 0x38
+ 5e8:	88 bb       	out	0x18, r24	; 24
+			PORTC =cc[i];
+ 5ea:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 5ee:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 5f2:	ee 0f       	add	r30, r30
+ 5f4:	ff 1f       	adc	r31, r31
+ 5f6:	87 e4       	ldi	r24, 0x47	; 71
+ 5f8:	90 e0       	ldi	r25, 0x00	; 0
+ 5fa:	8c 0f       	add	r24, r28
+ 5fc:	9d 1f       	adc	r25, r29
+ 5fe:	e8 0f       	add	r30, r24
+ 600:	f9 1f       	adc	r31, r25
+ 602:	80 81       	ld	r24, Z
+ 604:	85 bb       	out	0x15, r24	; 21
+ 606:	9f ef       	ldi	r25, 0xFF	; 255
+ 608:	23 ec       	ldi	r18, 0xC3	; 195
+ 60a:	89 e0       	ldi	r24, 0x09	; 9
+ 60c:	91 50       	subi	r25, 0x01	; 1
+ 60e:	20 40       	sbci	r18, 0x00	; 0
+ 610:	80 40       	sbci	r24, 0x00	; 0
+ 612:	e1 f7       	brne	.-8      	; 0x60c <__stack+0x1ad>
+ 614:	00 c0       	rjmp	.+0      	; 0x616 <__stack+0x1b7>
+ 616:	00 00       	nop
+			PORTB =bb[i];
+			PORTC =bc[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 618:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 61c:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 620:	01 96       	adiw	r24, 0x01	; 1
+ 622:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 626:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 62a:	87 30       	cpi	r24, 0x07	; 7
+ 62c:	91 05       	cpc	r25, r1
+ 62e:	9c f2       	brlt	.-90     	; 0x5d6 <__stack+0x177>
+			PORTB =cb[i];
+			PORTC =cc[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 630:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 634:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 638:	80 e0       	ldi	r24, 0x00	; 0
+ 63a:	90 e0       	ldi	r25, 0x00	; 0
+			//letter_d
+			PORTB =db[i];
+ 63c:	88 0f       	add	r24, r24
+ 63e:	99 1f       	adc	r25, r25
+ 640:	e5 e5       	ldi	r30, 0x55	; 85
+ 642:	f0 e0       	ldi	r31, 0x00	; 0
+ 644:	ec 0f       	add	r30, r28
+ 646:	fd 1f       	adc	r31, r29
+ 648:	e8 0f       	add	r30, r24
+ 64a:	f9 1f       	adc	r31, r25
+ 64c:	80 81       	ld	r24, Z
+ 64e:	88 bb       	out	0x18, r24	; 24
+			PORTC =dc[i];
+ 650:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 654:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 658:	ee 0f       	add	r30, r30
+ 65a:	ff 1f       	adc	r31, r31
+ 65c:	83 e6       	ldi	r24, 0x63	; 99
+ 65e:	90 e0       	ldi	r25, 0x00	; 0
+ 660:	8c 0f       	add	r24, r28
+ 662:	9d 1f       	adc	r25, r29
+ 664:	e8 0f       	add	r30, r24
+ 666:	f9 1f       	adc	r31, r25
+ 668:	80 81       	ld	r24, Z
+ 66a:	85 bb       	out	0x15, r24	; 21
+ 66c:	9f ef       	ldi	r25, 0xFF	; 255
+ 66e:	23 ec       	ldi	r18, 0xC3	; 195
+ 670:	89 e0       	ldi	r24, 0x09	; 9
+ 672:	91 50       	subi	r25, 0x01	; 1
+ 674:	20 40       	sbci	r18, 0x00	; 0
+ 676:	80 40       	sbci	r24, 0x00	; 0
+ 678:	e1 f7       	brne	.-8      	; 0x672 <__stack+0x213>
+ 67a:	00 c0       	rjmp	.+0      	; 0x67c <__stack+0x21d>
+ 67c:	00 00       	nop
+			PORTB =cb[i];
+			PORTC =cc[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 67e:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 682:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 686:	01 96       	adiw	r24, 0x01	; 1
+ 688:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 68c:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 690:	87 30       	cpi	r24, 0x07	; 7
+ 692:	91 05       	cpc	r25, r1
+ 694:	9c f2       	brlt	.-90     	; 0x63c <__stack+0x1dd>
+			PORTB =db[i];
+			PORTC =dc[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 696:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 69a:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 69e:	80 e0       	ldi	r24, 0x00	; 0
+ 6a0:	90 e0       	ldi	r25, 0x00	; 0
+			//letter_e
+			PORTB =eb[i];
+ 6a2:	88 0f       	add	r24, r24
+ 6a4:	99 1f       	adc	r25, r25
+ 6a6:	e1 e7       	ldi	r30, 0x71	; 113
+ 6a8:	f0 e0       	ldi	r31, 0x00	; 0
+ 6aa:	ec 0f       	add	r30, r28
+ 6ac:	fd 1f       	adc	r31, r29
+ 6ae:	e8 0f       	add	r30, r24
+ 6b0:	f9 1f       	adc	r31, r25
+ 6b2:	80 81       	ld	r24, Z
+ 6b4:	88 bb       	out	0x18, r24	; 24
+			PORTC =ec[i];
+ 6b6:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 6ba:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 6be:	ee 0f       	add	r30, r30
+ 6c0:	ff 1f       	adc	r31, r31
+ 6c2:	8f e7       	ldi	r24, 0x7F	; 127
+ 6c4:	90 e0       	ldi	r25, 0x00	; 0
+ 6c6:	8c 0f       	add	r24, r28
+ 6c8:	9d 1f       	adc	r25, r29
+ 6ca:	e8 0f       	add	r30, r24
+ 6cc:	f9 1f       	adc	r31, r25
+ 6ce:	80 81       	ld	r24, Z
+ 6d0:	85 bb       	out	0x15, r24	; 21
+ 6d2:	9f ef       	ldi	r25, 0xFF	; 255
+ 6d4:	23 ec       	ldi	r18, 0xC3	; 195
+ 6d6:	89 e0       	ldi	r24, 0x09	; 9
+ 6d8:	91 50       	subi	r25, 0x01	; 1
+ 6da:	20 40       	sbci	r18, 0x00	; 0
+ 6dc:	80 40       	sbci	r24, 0x00	; 0
+ 6de:	e1 f7       	brne	.-8      	; 0x6d8 <__stack+0x279>
+ 6e0:	00 c0       	rjmp	.+0      	; 0x6e2 <__stack+0x283>
+ 6e2:	00 00       	nop
+			PORTB =db[i];
+			PORTC =dc[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 6e4:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 6e8:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 6ec:	01 96       	adiw	r24, 0x01	; 1
+ 6ee:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 6f2:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 6f6:	87 30       	cpi	r24, 0x07	; 7
+ 6f8:	91 05       	cpc	r25, r1
+ 6fa:	9c f2       	brlt	.-90     	; 0x6a2 <__stack+0x243>
+			PORTB =eb[i];
+			PORTC =ec[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 6fc:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 700:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 704:	80 e0       	ldi	r24, 0x00	; 0
+ 706:	90 e0       	ldi	r25, 0x00	; 0
+			//letter_f
+			PORTB =fb[i];
+ 708:	88 0f       	add	r24, r24
+ 70a:	99 1f       	adc	r25, r25
+ 70c:	ed e8       	ldi	r30, 0x8D	; 141
+ 70e:	f0 e0       	ldi	r31, 0x00	; 0
+ 710:	ec 0f       	add	r30, r28
+ 712:	fd 1f       	adc	r31, r29
+ 714:	e8 0f       	add	r30, r24
+ 716:	f9 1f       	adc	r31, r25
+ 718:	80 81       	ld	r24, Z
+ 71a:	88 bb       	out	0x18, r24	; 24
+			PORTC =fc[i];
+ 71c:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 720:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 724:	ee 0f       	add	r30, r30
+ 726:	ff 1f       	adc	r31, r31
+ 728:	8b e9       	ldi	r24, 0x9B	; 155
+ 72a:	90 e0       	ldi	r25, 0x00	; 0
+ 72c:	8c 0f       	add	r24, r28
+ 72e:	9d 1f       	adc	r25, r29
+ 730:	e8 0f       	add	r30, r24
+ 732:	f9 1f       	adc	r31, r25
+ 734:	80 81       	ld	r24, Z
+ 736:	85 bb       	out	0x15, r24	; 21
+ 738:	9f ef       	ldi	r25, 0xFF	; 255
+ 73a:	23 ec       	ldi	r18, 0xC3	; 195
+ 73c:	89 e0       	ldi	r24, 0x09	; 9
+ 73e:	91 50       	subi	r25, 0x01	; 1
+ 740:	20 40       	sbci	r18, 0x00	; 0
+ 742:	80 40       	sbci	r24, 0x00	; 0
+ 744:	e1 f7       	brne	.-8      	; 0x73e <__stack+0x2df>
+ 746:	00 c0       	rjmp	.+0      	; 0x748 <__stack+0x2e9>
+ 748:	00 00       	nop
+			PORTB =eb[i];
+			PORTC =ec[i];
+			_delay_ms(200);
+			
+		}
+		for (i=0;i<7;i++){
+ 74a:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 74e:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 752:	01 96       	adiw	r24, 0x01	; 1
+ 754:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 758:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 75c:	87 30       	cpi	r24, 0x07	; 7
+ 75e:	91 05       	cpc	r25, r1
+ 760:	9c f2       	brlt	.-90     	; 0x708 <__stack+0x2a9>
+			PORTB =fb[i];
+			PORTC =fc[i];
+			_delay_ms(200);
+			
+    }
+	for (i=0;i<7;i++){
+ 762:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 766:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 76a:	80 e0       	ldi	r24, 0x00	; 0
+ 76c:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_g
+		PORTB =gb[i];
+ 76e:	88 0f       	add	r24, r24
+ 770:	99 1f       	adc	r25, r25
+ 772:	e9 ea       	ldi	r30, 0xA9	; 169
+ 774:	f0 e0       	ldi	r31, 0x00	; 0
+ 776:	ec 0f       	add	r30, r28
+ 778:	fd 1f       	adc	r31, r29
+ 77a:	e8 0f       	add	r30, r24
+ 77c:	f9 1f       	adc	r31, r25
+ 77e:	80 81       	ld	r24, Z
+ 780:	88 bb       	out	0x18, r24	; 24
+		PORTC =gc[i];
+ 782:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 786:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 78a:	ee 0f       	add	r30, r30
+ 78c:	ff 1f       	adc	r31, r31
+ 78e:	87 eb       	ldi	r24, 0xB7	; 183
+ 790:	90 e0       	ldi	r25, 0x00	; 0
+ 792:	8c 0f       	add	r24, r28
+ 794:	9d 1f       	adc	r25, r29
+ 796:	e8 0f       	add	r30, r24
+ 798:	f9 1f       	adc	r31, r25
+ 79a:	80 81       	ld	r24, Z
+ 79c:	85 bb       	out	0x15, r24	; 21
+ 79e:	9f ef       	ldi	r25, 0xFF	; 255
+ 7a0:	23 ec       	ldi	r18, 0xC3	; 195
+ 7a2:	89 e0       	ldi	r24, 0x09	; 9
+ 7a4:	91 50       	subi	r25, 0x01	; 1
+ 7a6:	20 40       	sbci	r18, 0x00	; 0
+ 7a8:	80 40       	sbci	r24, 0x00	; 0
+ 7aa:	e1 f7       	brne	.-8      	; 0x7a4 <__stack+0x345>
+ 7ac:	00 c0       	rjmp	.+0      	; 0x7ae <__stack+0x34f>
+ 7ae:	00 00       	nop
+			PORTB =fb[i];
+			PORTC =fc[i];
+			_delay_ms(200);
+			
+    }
+	for (i=0;i<7;i++){
+ 7b0:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 7b4:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 7b8:	01 96       	adiw	r24, 0x01	; 1
+ 7ba:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 7be:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 7c2:	87 30       	cpi	r24, 0x07	; 7
+ 7c4:	91 05       	cpc	r25, r1
+ 7c6:	9c f2       	brlt	.-90     	; 0x76e <__stack+0x30f>
+		PORTB =gb[i];
+		PORTC =gc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 7c8:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 7cc:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 7d0:	80 e0       	ldi	r24, 0x00	; 0
+ 7d2:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_h
+		PORTB =hb[i];
+ 7d4:	88 0f       	add	r24, r24
+ 7d6:	99 1f       	adc	r25, r25
+ 7d8:	e5 ec       	ldi	r30, 0xC5	; 197
+ 7da:	f0 e0       	ldi	r31, 0x00	; 0
+ 7dc:	ec 0f       	add	r30, r28
+ 7de:	fd 1f       	adc	r31, r29
+ 7e0:	e8 0f       	add	r30, r24
+ 7e2:	f9 1f       	adc	r31, r25
+ 7e4:	80 81       	ld	r24, Z
+ 7e6:	88 bb       	out	0x18, r24	; 24
+		PORTC =hc[i];
+ 7e8:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 7ec:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 7f0:	ee 0f       	add	r30, r30
+ 7f2:	ff 1f       	adc	r31, r31
+ 7f4:	83 ed       	ldi	r24, 0xD3	; 211
+ 7f6:	90 e0       	ldi	r25, 0x00	; 0
+ 7f8:	8c 0f       	add	r24, r28
+ 7fa:	9d 1f       	adc	r25, r29
+ 7fc:	e8 0f       	add	r30, r24
+ 7fe:	f9 1f       	adc	r31, r25
+ 800:	80 81       	ld	r24, Z
+ 802:	85 bb       	out	0x15, r24	; 21
+ 804:	9f ef       	ldi	r25, 0xFF	; 255
+ 806:	23 ec       	ldi	r18, 0xC3	; 195
+ 808:	89 e0       	ldi	r24, 0x09	; 9
+ 80a:	91 50       	subi	r25, 0x01	; 1
+ 80c:	20 40       	sbci	r18, 0x00	; 0
+ 80e:	80 40       	sbci	r24, 0x00	; 0
+ 810:	e1 f7       	brne	.-8      	; 0x80a <__stack+0x3ab>
+ 812:	00 c0       	rjmp	.+0      	; 0x814 <__stack+0x3b5>
+ 814:	00 00       	nop
+		PORTB =gb[i];
+		PORTC =gc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 816:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 81a:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 81e:	01 96       	adiw	r24, 0x01	; 1
+ 820:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 824:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 828:	87 30       	cpi	r24, 0x07	; 7
+ 82a:	91 05       	cpc	r25, r1
+ 82c:	9c f2       	brlt	.-90     	; 0x7d4 <__stack+0x375>
+		PORTB =hb[i];
+		PORTC =hc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 82e:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 832:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 836:	80 e0       	ldi	r24, 0x00	; 0
+ 838:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_i
+		PORTB =ib[i];
+ 83a:	88 0f       	add	r24, r24
+ 83c:	99 1f       	adc	r25, r25
+ 83e:	e1 ee       	ldi	r30, 0xE1	; 225
+ 840:	f0 e0       	ldi	r31, 0x00	; 0
+ 842:	ec 0f       	add	r30, r28
+ 844:	fd 1f       	adc	r31, r29
+ 846:	e8 0f       	add	r30, r24
+ 848:	f9 1f       	adc	r31, r25
+ 84a:	80 81       	ld	r24, Z
+ 84c:	88 bb       	out	0x18, r24	; 24
+		PORTC =ic[i];
+ 84e:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 852:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 856:	ee 0f       	add	r30, r30
+ 858:	ff 1f       	adc	r31, r31
+ 85a:	8f ee       	ldi	r24, 0xEF	; 239
+ 85c:	90 e0       	ldi	r25, 0x00	; 0
+ 85e:	8c 0f       	add	r24, r28
+ 860:	9d 1f       	adc	r25, r29
+ 862:	e8 0f       	add	r30, r24
+ 864:	f9 1f       	adc	r31, r25
+ 866:	80 81       	ld	r24, Z
+ 868:	85 bb       	out	0x15, r24	; 21
+ 86a:	9f ef       	ldi	r25, 0xFF	; 255
+ 86c:	23 ec       	ldi	r18, 0xC3	; 195
+ 86e:	89 e0       	ldi	r24, 0x09	; 9
+ 870:	91 50       	subi	r25, 0x01	; 1
+ 872:	20 40       	sbci	r18, 0x00	; 0
+ 874:	80 40       	sbci	r24, 0x00	; 0
+ 876:	e1 f7       	brne	.-8      	; 0x870 <__stack+0x411>
+ 878:	00 c0       	rjmp	.+0      	; 0x87a <__stack+0x41b>
+ 87a:	00 00       	nop
+		PORTB =hb[i];
+		PORTC =hc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 87c:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 880:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 884:	01 96       	adiw	r24, 0x01	; 1
+ 886:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 88a:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 88e:	87 30       	cpi	r24, 0x07	; 7
+ 890:	91 05       	cpc	r25, r1
+ 892:	9c f2       	brlt	.-90     	; 0x83a <__stack+0x3db>
+		PORTB =ib[i];
+		PORTC =ic[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 894:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 898:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 89c:	80 e0       	ldi	r24, 0x00	; 0
+ 89e:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_j
+		PORTB =jb[i];
+ 8a0:	88 0f       	add	r24, r24
+ 8a2:	99 1f       	adc	r25, r25
+ 8a4:	ed ef       	ldi	r30, 0xFD	; 253
+ 8a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 8a8:	ec 0f       	add	r30, r28
+ 8aa:	fd 1f       	adc	r31, r29
+ 8ac:	e8 0f       	add	r30, r24
+ 8ae:	f9 1f       	adc	r31, r25
+ 8b0:	80 81       	ld	r24, Z
+ 8b2:	88 bb       	out	0x18, r24	; 24
+		PORTC =jc[i];
+ 8b4:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 8b8:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 8bc:	ee 0f       	add	r30, r30
+ 8be:	ff 1f       	adc	r31, r31
+ 8c0:	8b e0       	ldi	r24, 0x0B	; 11
+ 8c2:	91 e0       	ldi	r25, 0x01	; 1
+ 8c4:	8c 0f       	add	r24, r28
+ 8c6:	9d 1f       	adc	r25, r29
+ 8c8:	e8 0f       	add	r30, r24
+ 8ca:	f9 1f       	adc	r31, r25
+ 8cc:	80 81       	ld	r24, Z
+ 8ce:	85 bb       	out	0x15, r24	; 21
+ 8d0:	9f ef       	ldi	r25, 0xFF	; 255
+ 8d2:	23 ec       	ldi	r18, 0xC3	; 195
+ 8d4:	89 e0       	ldi	r24, 0x09	; 9
+ 8d6:	91 50       	subi	r25, 0x01	; 1
+ 8d8:	20 40       	sbci	r18, 0x00	; 0
+ 8da:	80 40       	sbci	r24, 0x00	; 0
+ 8dc:	e1 f7       	brne	.-8      	; 0x8d6 <__stack+0x477>
+ 8de:	00 c0       	rjmp	.+0      	; 0x8e0 <__stack+0x481>
+ 8e0:	00 00       	nop
+		PORTB =ib[i];
+		PORTC =ic[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 8e2:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 8e6:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 8ea:	01 96       	adiw	r24, 0x01	; 1
+ 8ec:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 8f0:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 8f4:	87 30       	cpi	r24, 0x07	; 7
+ 8f6:	91 05       	cpc	r25, r1
+ 8f8:	9c f2       	brlt	.-90     	; 0x8a0 <__stack+0x441>
+		PORTB =jb[i];
+		PORTC =jc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 8fa:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 8fe:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 902:	80 e0       	ldi	r24, 0x00	; 0
+ 904:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_k
+		PORTB =kb[i];
+ 906:	88 0f       	add	r24, r24
+ 908:	99 1f       	adc	r25, r25
+ 90a:	e9 e1       	ldi	r30, 0x19	; 25
+ 90c:	f1 e0       	ldi	r31, 0x01	; 1
+ 90e:	ec 0f       	add	r30, r28
+ 910:	fd 1f       	adc	r31, r29
+ 912:	e8 0f       	add	r30, r24
+ 914:	f9 1f       	adc	r31, r25
+ 916:	80 81       	ld	r24, Z
+ 918:	88 bb       	out	0x18, r24	; 24
+		PORTC =kc[i];
+ 91a:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 91e:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 922:	ee 0f       	add	r30, r30
+ 924:	ff 1f       	adc	r31, r31
+ 926:	87 e2       	ldi	r24, 0x27	; 39
+ 928:	91 e0       	ldi	r25, 0x01	; 1
+ 92a:	8c 0f       	add	r24, r28
+ 92c:	9d 1f       	adc	r25, r29
+ 92e:	e8 0f       	add	r30, r24
+ 930:	f9 1f       	adc	r31, r25
+ 932:	80 81       	ld	r24, Z
+ 934:	85 bb       	out	0x15, r24	; 21
+ 936:	9f ef       	ldi	r25, 0xFF	; 255
+ 938:	23 ec       	ldi	r18, 0xC3	; 195
+ 93a:	89 e0       	ldi	r24, 0x09	; 9
+ 93c:	91 50       	subi	r25, 0x01	; 1
+ 93e:	20 40       	sbci	r18, 0x00	; 0
+ 940:	80 40       	sbci	r24, 0x00	; 0
+ 942:	e1 f7       	brne	.-8      	; 0x93c <__stack+0x4dd>
+ 944:	00 c0       	rjmp	.+0      	; 0x946 <__stack+0x4e7>
+ 946:	00 00       	nop
+		PORTB =jb[i];
+		PORTC =jc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 948:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 94c:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 950:	01 96       	adiw	r24, 0x01	; 1
+ 952:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 956:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 95a:	87 30       	cpi	r24, 0x07	; 7
+ 95c:	91 05       	cpc	r25, r1
+ 95e:	9c f2       	brlt	.-90     	; 0x906 <__stack+0x4a7>
+		PORTB =kb[i];
+		PORTC =kc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 960:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 964:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 968:	80 e0       	ldi	r24, 0x00	; 0
+ 96a:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_l
+		PORTB =lb[i];
+ 96c:	88 0f       	add	r24, r24
+ 96e:	99 1f       	adc	r25, r25
+ 970:	e5 e3       	ldi	r30, 0x35	; 53
+ 972:	f1 e0       	ldi	r31, 0x01	; 1
+ 974:	ec 0f       	add	r30, r28
+ 976:	fd 1f       	adc	r31, r29
+ 978:	e8 0f       	add	r30, r24
+ 97a:	f9 1f       	adc	r31, r25
+ 97c:	80 81       	ld	r24, Z
+ 97e:	88 bb       	out	0x18, r24	; 24
+		PORTC =lc[i];
+ 980:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 984:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 988:	ee 0f       	add	r30, r30
+ 98a:	ff 1f       	adc	r31, r31
+ 98c:	83 e4       	ldi	r24, 0x43	; 67
+ 98e:	91 e0       	ldi	r25, 0x01	; 1
+ 990:	8c 0f       	add	r24, r28
+ 992:	9d 1f       	adc	r25, r29
+ 994:	e8 0f       	add	r30, r24
+ 996:	f9 1f       	adc	r31, r25
+ 998:	80 81       	ld	r24, Z
+ 99a:	85 bb       	out	0x15, r24	; 21
+ 99c:	9f ef       	ldi	r25, 0xFF	; 255
+ 99e:	23 ec       	ldi	r18, 0xC3	; 195
+ 9a0:	89 e0       	ldi	r24, 0x09	; 9
+ 9a2:	91 50       	subi	r25, 0x01	; 1
+ 9a4:	20 40       	sbci	r18, 0x00	; 0
+ 9a6:	80 40       	sbci	r24, 0x00	; 0
+ 9a8:	e1 f7       	brne	.-8      	; 0x9a2 <__stack+0x543>
+ 9aa:	00 c0       	rjmp	.+0      	; 0x9ac <__stack+0x54d>
+ 9ac:	00 00       	nop
+		PORTB =kb[i];
+		PORTC =kc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 9ae:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ 9b2:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ 9b6:	01 96       	adiw	r24, 0x01	; 1
+ 9b8:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ 9bc:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ 9c0:	87 30       	cpi	r24, 0x07	; 7
+ 9c2:	91 05       	cpc	r25, r1
+ 9c4:	9c f2       	brlt	.-90     	; 0x96c <__stack+0x50d>
+		PORTB =lb[i];
+		PORTC =lc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ 9c6:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ 9ca:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ 9ce:	80 e0       	ldi	r24, 0x00	; 0
+ 9d0:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_m
+		PORTB = mb[i];
+ 9d2:	88 0f       	add	r24, r24
+ 9d4:	99 1f       	adc	r25, r25
+ 9d6:	e1 e5       	ldi	r30, 0x51	; 81
+ 9d8:	f1 e0       	ldi	r31, 0x01	; 1
+ 9da:	ec 0f       	add	r30, r28
+ 9dc:	fd 1f       	adc	r31, r29
+ 9de:	e8 0f       	add	r30, r24
+ 9e0:	f9 1f       	adc	r31, r25
+ 9e2:	80 81       	ld	r24, Z
+ 9e4:	88 bb       	out	0x18, r24	; 24
+		PORTC =mc[i];
+ 9e6:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ 9ea:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ 9ee:	ee 0f       	add	r30, r30
+ 9f0:	ff 1f       	adc	r31, r31
+ 9f2:	8f e5       	ldi	r24, 0x5F	; 95
+ 9f4:	91 e0       	ldi	r25, 0x01	; 1
+ 9f6:	8c 0f       	add	r24, r28
+ 9f8:	9d 1f       	adc	r25, r29
+ 9fa:	e8 0f       	add	r30, r24
+ 9fc:	f9 1f       	adc	r31, r25
+ 9fe:	80 81       	ld	r24, Z
+ a00:	85 bb       	out	0x15, r24	; 21
+ a02:	9f ef       	ldi	r25, 0xFF	; 255
+ a04:	23 ec       	ldi	r18, 0xC3	; 195
+ a06:	89 e0       	ldi	r24, 0x09	; 9
+ a08:	91 50       	subi	r25, 0x01	; 1
+ a0a:	20 40       	sbci	r18, 0x00	; 0
+ a0c:	80 40       	sbci	r24, 0x00	; 0
+ a0e:	e1 f7       	brne	.-8      	; 0xa08 <__stack+0x5a9>
+ a10:	00 c0       	rjmp	.+0      	; 0xa12 <__stack+0x5b3>
+ a12:	00 00       	nop
+		PORTB =lb[i];
+		PORTC =lc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ a14:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ a18:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ a1c:	01 96       	adiw	r24, 0x01	; 1
+ a1e:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ a22:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ a26:	87 30       	cpi	r24, 0x07	; 7
+ a28:	91 05       	cpc	r25, r1
+ a2a:	9c f2       	brlt	.-90     	; 0x9d2 <__stack+0x573>
+		PORTB = mb[i];
+		PORTC =mc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ a2c:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ a30:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ a34:	80 e0       	ldi	r24, 0x00	; 0
+ a36:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_n
+		PORTB =nb[i];
+ a38:	88 0f       	add	r24, r24
+ a3a:	99 1f       	adc	r25, r25
+ a3c:	ed e6       	ldi	r30, 0x6D	; 109
+ a3e:	f1 e0       	ldi	r31, 0x01	; 1
+ a40:	ec 0f       	add	r30, r28
+ a42:	fd 1f       	adc	r31, r29
+ a44:	e8 0f       	add	r30, r24
+ a46:	f9 1f       	adc	r31, r25
+ a48:	80 81       	ld	r24, Z
+ a4a:	88 bb       	out	0x18, r24	; 24
+		PORTC =nc[i];
+ a4c:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ a50:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ a54:	ee 0f       	add	r30, r30
+ a56:	ff 1f       	adc	r31, r31
+ a58:	8b e7       	ldi	r24, 0x7B	; 123
+ a5a:	91 e0       	ldi	r25, 0x01	; 1
+ a5c:	8c 0f       	add	r24, r28
+ a5e:	9d 1f       	adc	r25, r29
+ a60:	e8 0f       	add	r30, r24
+ a62:	f9 1f       	adc	r31, r25
+ a64:	80 81       	ld	r24, Z
+ a66:	85 bb       	out	0x15, r24	; 21
+ a68:	9f ef       	ldi	r25, 0xFF	; 255
+ a6a:	23 ec       	ldi	r18, 0xC3	; 195
+ a6c:	89 e0       	ldi	r24, 0x09	; 9
+ a6e:	91 50       	subi	r25, 0x01	; 1
+ a70:	20 40       	sbci	r18, 0x00	; 0
+ a72:	80 40       	sbci	r24, 0x00	; 0
+ a74:	e1 f7       	brne	.-8      	; 0xa6e <__stack+0x60f>
+ a76:	00 c0       	rjmp	.+0      	; 0xa78 <__stack+0x619>
+ a78:	00 00       	nop
+		PORTB = mb[i];
+		PORTC =mc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ a7a:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ a7e:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ a82:	01 96       	adiw	r24, 0x01	; 1
+ a84:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ a88:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ a8c:	87 30       	cpi	r24, 0x07	; 7
+ a8e:	91 05       	cpc	r25, r1
+ a90:	9c f2       	brlt	.-90     	; 0xa38 <__stack+0x5d9>
+		PORTB =nb[i];
+		PORTC =nc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ a92:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ a96:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ a9a:	80 e0       	ldi	r24, 0x00	; 0
+ a9c:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_o
+		PORTB =ob[i];
+ a9e:	88 0f       	add	r24, r24
+ aa0:	99 1f       	adc	r25, r25
+ aa2:	e9 e8       	ldi	r30, 0x89	; 137
+ aa4:	f1 e0       	ldi	r31, 0x01	; 1
+ aa6:	ec 0f       	add	r30, r28
+ aa8:	fd 1f       	adc	r31, r29
+ aaa:	e8 0f       	add	r30, r24
+ aac:	f9 1f       	adc	r31, r25
+ aae:	80 81       	ld	r24, Z
+ ab0:	88 bb       	out	0x18, r24	; 24
+		PORTC =oc[i];
+ ab2:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ ab6:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ aba:	ee 0f       	add	r30, r30
+ abc:	ff 1f       	adc	r31, r31
+ abe:	87 e9       	ldi	r24, 0x97	; 151
+ ac0:	91 e0       	ldi	r25, 0x01	; 1
+ ac2:	8c 0f       	add	r24, r28
+ ac4:	9d 1f       	adc	r25, r29
+ ac6:	e8 0f       	add	r30, r24
+ ac8:	f9 1f       	adc	r31, r25
+ aca:	80 81       	ld	r24, Z
+ acc:	85 bb       	out	0x15, r24	; 21
+ ace:	9f ef       	ldi	r25, 0xFF	; 255
+ ad0:	23 ec       	ldi	r18, 0xC3	; 195
+ ad2:	89 e0       	ldi	r24, 0x09	; 9
+ ad4:	91 50       	subi	r25, 0x01	; 1
+ ad6:	20 40       	sbci	r18, 0x00	; 0
+ ad8:	80 40       	sbci	r24, 0x00	; 0
+ ada:	e1 f7       	brne	.-8      	; 0xad4 <__stack+0x675>
+ adc:	00 c0       	rjmp	.+0      	; 0xade <__stack+0x67f>
+ ade:	00 00       	nop
+		PORTB =nb[i];
+		PORTC =nc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ ae0:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ ae4:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ ae8:	01 96       	adiw	r24, 0x01	; 1
+ aea:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ aee:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ af2:	87 30       	cpi	r24, 0x07	; 7
+ af4:	91 05       	cpc	r25, r1
+ af6:	9c f2       	brlt	.-90     	; 0xa9e <__stack+0x63f>
+		PORTB =ob[i];
+		PORTC =oc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ af8:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ afc:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ b00:	80 e0       	ldi	r24, 0x00	; 0
+ b02:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_p
+		PORTB =pb[i];
+ b04:	88 0f       	add	r24, r24
+ b06:	99 1f       	adc	r25, r25
+ b08:	e5 ea       	ldi	r30, 0xA5	; 165
+ b0a:	f1 e0       	ldi	r31, 0x01	; 1
+ b0c:	ec 0f       	add	r30, r28
+ b0e:	fd 1f       	adc	r31, r29
+ b10:	e8 0f       	add	r30, r24
+ b12:	f9 1f       	adc	r31, r25
+ b14:	80 81       	ld	r24, Z
+ b16:	88 bb       	out	0x18, r24	; 24
+		PORTC =pc[i];
+ b18:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ b1c:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ b20:	ee 0f       	add	r30, r30
+ b22:	ff 1f       	adc	r31, r31
+ b24:	83 eb       	ldi	r24, 0xB3	; 179
+ b26:	91 e0       	ldi	r25, 0x01	; 1
+ b28:	8c 0f       	add	r24, r28
+ b2a:	9d 1f       	adc	r25, r29
+ b2c:	e8 0f       	add	r30, r24
+ b2e:	f9 1f       	adc	r31, r25
+ b30:	80 81       	ld	r24, Z
+ b32:	85 bb       	out	0x15, r24	; 21
+ b34:	9f ef       	ldi	r25, 0xFF	; 255
+ b36:	23 ec       	ldi	r18, 0xC3	; 195
+ b38:	89 e0       	ldi	r24, 0x09	; 9
+ b3a:	91 50       	subi	r25, 0x01	; 1
+ b3c:	20 40       	sbci	r18, 0x00	; 0
+ b3e:	80 40       	sbci	r24, 0x00	; 0
+ b40:	e1 f7       	brne	.-8      	; 0xb3a <__stack+0x6db>
+ b42:	00 c0       	rjmp	.+0      	; 0xb44 <__stack+0x6e5>
+ b44:	00 00       	nop
+		PORTB =ob[i];
+		PORTC =oc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ b46:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ b4a:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ b4e:	01 96       	adiw	r24, 0x01	; 1
+ b50:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ b54:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ b58:	87 30       	cpi	r24, 0x07	; 7
+ b5a:	91 05       	cpc	r25, r1
+ b5c:	9c f2       	brlt	.-90     	; 0xb04 <__stack+0x6a5>
+		PORTB =pb[i];
+		PORTC =pc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ b5e:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ b62:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ b66:	80 e0       	ldi	r24, 0x00	; 0
+ b68:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_q
+		PORTB =qb[i];
+ b6a:	88 0f       	add	r24, r24
+ b6c:	99 1f       	adc	r25, r25
+ b6e:	e1 ec       	ldi	r30, 0xC1	; 193
+ b70:	f1 e0       	ldi	r31, 0x01	; 1
+ b72:	ec 0f       	add	r30, r28
+ b74:	fd 1f       	adc	r31, r29
+ b76:	e8 0f       	add	r30, r24
+ b78:	f9 1f       	adc	r31, r25
+ b7a:	80 81       	ld	r24, Z
+ b7c:	88 bb       	out	0x18, r24	; 24
+		PORTC =qc[i];
+ b7e:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ b82:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ b86:	ee 0f       	add	r30, r30
+ b88:	ff 1f       	adc	r31, r31
+ b8a:	8f ec       	ldi	r24, 0xCF	; 207
+ b8c:	91 e0       	ldi	r25, 0x01	; 1
+ b8e:	8c 0f       	add	r24, r28
+ b90:	9d 1f       	adc	r25, r29
+ b92:	e8 0f       	add	r30, r24
+ b94:	f9 1f       	adc	r31, r25
+ b96:	80 81       	ld	r24, Z
+ b98:	85 bb       	out	0x15, r24	; 21
+ b9a:	9f ef       	ldi	r25, 0xFF	; 255
+ b9c:	23 ec       	ldi	r18, 0xC3	; 195
+ b9e:	89 e0       	ldi	r24, 0x09	; 9
+ ba0:	91 50       	subi	r25, 0x01	; 1
+ ba2:	20 40       	sbci	r18, 0x00	; 0
+ ba4:	80 40       	sbci	r24, 0x00	; 0
+ ba6:	e1 f7       	brne	.-8      	; 0xba0 <__stack+0x741>
+ ba8:	00 c0       	rjmp	.+0      	; 0xbaa <__stack+0x74b>
+ baa:	00 00       	nop
+		PORTB =pb[i];
+		PORTC =pc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ bac:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ bb0:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ bb4:	01 96       	adiw	r24, 0x01	; 1
+ bb6:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ bba:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ bbe:	87 30       	cpi	r24, 0x07	; 7
+ bc0:	91 05       	cpc	r25, r1
+ bc2:	9c f2       	brlt	.-90     	; 0xb6a <__stack+0x70b>
+		PORTB =qb[i];
+		PORTC =qc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ bc4:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ bc8:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ bcc:	80 e0       	ldi	r24, 0x00	; 0
+ bce:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_r
+		PORTB =rb[i];
+ bd0:	88 0f       	add	r24, r24
+ bd2:	99 1f       	adc	r25, r25
+ bd4:	ed ed       	ldi	r30, 0xDD	; 221
+ bd6:	f1 e0       	ldi	r31, 0x01	; 1
+ bd8:	ec 0f       	add	r30, r28
+ bda:	fd 1f       	adc	r31, r29
+ bdc:	e8 0f       	add	r30, r24
+ bde:	f9 1f       	adc	r31, r25
+ be0:	80 81       	ld	r24, Z
+ be2:	88 bb       	out	0x18, r24	; 24
+		PORTC =rc[i];
+ be4:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ be8:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ bec:	ee 0f       	add	r30, r30
+ bee:	ff 1f       	adc	r31, r31
+ bf0:	8b ee       	ldi	r24, 0xEB	; 235
+ bf2:	91 e0       	ldi	r25, 0x01	; 1
+ bf4:	8c 0f       	add	r24, r28
+ bf6:	9d 1f       	adc	r25, r29
+ bf8:	e8 0f       	add	r30, r24
+ bfa:	f9 1f       	adc	r31, r25
+ bfc:	80 81       	ld	r24, Z
+ bfe:	85 bb       	out	0x15, r24	; 21
+ c00:	9f ef       	ldi	r25, 0xFF	; 255
+ c02:	23 ec       	ldi	r18, 0xC3	; 195
+ c04:	89 e0       	ldi	r24, 0x09	; 9
+ c06:	91 50       	subi	r25, 0x01	; 1
+ c08:	20 40       	sbci	r18, 0x00	; 0
+ c0a:	80 40       	sbci	r24, 0x00	; 0
+ c0c:	e1 f7       	brne	.-8      	; 0xc06 <__stack+0x7a7>
+ c0e:	00 c0       	rjmp	.+0      	; 0xc10 <__stack+0x7b1>
+ c10:	00 00       	nop
+		PORTB =qb[i];
+		PORTC =qc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ c12:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ c16:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ c1a:	01 96       	adiw	r24, 0x01	; 1
+ c1c:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ c20:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ c24:	87 30       	cpi	r24, 0x07	; 7
+ c26:	91 05       	cpc	r25, r1
+ c28:	9c f2       	brlt	.-90     	; 0xbd0 <__stack+0x771>
+		PORTB =rb[i];
+		PORTC =rc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ c2a:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ c2e:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ c32:	80 e0       	ldi	r24, 0x00	; 0
+ c34:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_s
+		PORTB =sb[i];
+ c36:	88 0f       	add	r24, r24
+ c38:	99 1f       	adc	r25, r25
+ c3a:	e9 ef       	ldi	r30, 0xF9	; 249
+ c3c:	f1 e0       	ldi	r31, 0x01	; 1
+ c3e:	ec 0f       	add	r30, r28
+ c40:	fd 1f       	adc	r31, r29
+ c42:	e8 0f       	add	r30, r24
+ c44:	f9 1f       	adc	r31, r25
+ c46:	80 81       	ld	r24, Z
+ c48:	88 bb       	out	0x18, r24	; 24
+		PORTC =sc[i];
+ c4a:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ c4e:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ c52:	ee 0f       	add	r30, r30
+ c54:	ff 1f       	adc	r31, r31
+ c56:	87 e0       	ldi	r24, 0x07	; 7
+ c58:	92 e0       	ldi	r25, 0x02	; 2
+ c5a:	8c 0f       	add	r24, r28
+ c5c:	9d 1f       	adc	r25, r29
+ c5e:	e8 0f       	add	r30, r24
+ c60:	f9 1f       	adc	r31, r25
+ c62:	80 81       	ld	r24, Z
+ c64:	85 bb       	out	0x15, r24	; 21
+ c66:	9f ef       	ldi	r25, 0xFF	; 255
+ c68:	23 ec       	ldi	r18, 0xC3	; 195
+ c6a:	89 e0       	ldi	r24, 0x09	; 9
+ c6c:	91 50       	subi	r25, 0x01	; 1
+ c6e:	20 40       	sbci	r18, 0x00	; 0
+ c70:	80 40       	sbci	r24, 0x00	; 0
+ c72:	e1 f7       	brne	.-8      	; 0xc6c <__stack+0x80d>
+ c74:	00 c0       	rjmp	.+0      	; 0xc76 <__stack+0x817>
+ c76:	00 00       	nop
+		PORTB =rb[i];
+		PORTC =rc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ c78:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ c7c:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ c80:	01 96       	adiw	r24, 0x01	; 1
+ c82:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ c86:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ c8a:	87 30       	cpi	r24, 0x07	; 7
+ c8c:	91 05       	cpc	r25, r1
+ c8e:	9c f2       	brlt	.-90     	; 0xc36 <__stack+0x7d7>
+		PORTB =sb[i];
+		PORTC =sc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ c90:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ c94:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ c98:	80 e0       	ldi	r24, 0x00	; 0
+ c9a:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_t
+		PORTB =tb[i];
+ c9c:	88 0f       	add	r24, r24
+ c9e:	99 1f       	adc	r25, r25
+ ca0:	e5 e1       	ldi	r30, 0x15	; 21
+ ca2:	f2 e0       	ldi	r31, 0x02	; 2
+ ca4:	ec 0f       	add	r30, r28
+ ca6:	fd 1f       	adc	r31, r29
+ ca8:	e8 0f       	add	r30, r24
+ caa:	f9 1f       	adc	r31, r25
+ cac:	80 81       	ld	r24, Z
+ cae:	88 bb       	out	0x18, r24	; 24
+		PORTC =tc[i];
+ cb0:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ cb4:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ cb8:	ee 0f       	add	r30, r30
+ cba:	ff 1f       	adc	r31, r31
+ cbc:	83 e2       	ldi	r24, 0x23	; 35
+ cbe:	92 e0       	ldi	r25, 0x02	; 2
+ cc0:	8c 0f       	add	r24, r28
+ cc2:	9d 1f       	adc	r25, r29
+ cc4:	e8 0f       	add	r30, r24
+ cc6:	f9 1f       	adc	r31, r25
+ cc8:	80 81       	ld	r24, Z
+ cca:	85 bb       	out	0x15, r24	; 21
+ ccc:	9f ef       	ldi	r25, 0xFF	; 255
+ cce:	23 ec       	ldi	r18, 0xC3	; 195
+ cd0:	89 e0       	ldi	r24, 0x09	; 9
+ cd2:	91 50       	subi	r25, 0x01	; 1
+ cd4:	20 40       	sbci	r18, 0x00	; 0
+ cd6:	80 40       	sbci	r24, 0x00	; 0
+ cd8:	e1 f7       	brne	.-8      	; 0xcd2 <__stack+0x873>
+ cda:	00 c0       	rjmp	.+0      	; 0xcdc <__stack+0x87d>
+ cdc:	00 00       	nop
+		PORTB =sb[i];
+		PORTC =sc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ cde:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ ce2:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ ce6:	01 96       	adiw	r24, 0x01	; 1
+ ce8:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ cec:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ cf0:	87 30       	cpi	r24, 0x07	; 7
+ cf2:	91 05       	cpc	r25, r1
+ cf4:	9c f2       	brlt	.-90     	; 0xc9c <__stack+0x83d>
+		PORTB =tb[i];
+		PORTC =tc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ cf6:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ cfa:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ cfe:	80 e0       	ldi	r24, 0x00	; 0
+ d00:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_u
+		PORTB =ub[i];
+ d02:	88 0f       	add	r24, r24
+ d04:	99 1f       	adc	r25, r25
+ d06:	e1 e3       	ldi	r30, 0x31	; 49
+ d08:	f2 e0       	ldi	r31, 0x02	; 2
+ d0a:	ec 0f       	add	r30, r28
+ d0c:	fd 1f       	adc	r31, r29
+ d0e:	e8 0f       	add	r30, r24
+ d10:	f9 1f       	adc	r31, r25
+ d12:	80 81       	ld	r24, Z
+ d14:	88 bb       	out	0x18, r24	; 24
+		PORTC =uc[i];
+ d16:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ d1a:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ d1e:	ee 0f       	add	r30, r30
+ d20:	ff 1f       	adc	r31, r31
+ d22:	8f e3       	ldi	r24, 0x3F	; 63
+ d24:	92 e0       	ldi	r25, 0x02	; 2
+ d26:	8c 0f       	add	r24, r28
+ d28:	9d 1f       	adc	r25, r29
+ d2a:	e8 0f       	add	r30, r24
+ d2c:	f9 1f       	adc	r31, r25
+ d2e:	80 81       	ld	r24, Z
+ d30:	85 bb       	out	0x15, r24	; 21
+ d32:	9f ef       	ldi	r25, 0xFF	; 255
+ d34:	23 ec       	ldi	r18, 0xC3	; 195
+ d36:	89 e0       	ldi	r24, 0x09	; 9
+ d38:	91 50       	subi	r25, 0x01	; 1
+ d3a:	20 40       	sbci	r18, 0x00	; 0
+ d3c:	80 40       	sbci	r24, 0x00	; 0
+ d3e:	e1 f7       	brne	.-8      	; 0xd38 <__stack+0x8d9>
+ d40:	00 c0       	rjmp	.+0      	; 0xd42 <__stack+0x8e3>
+ d42:	00 00       	nop
+		PORTB =tb[i];
+		PORTC =tc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ d44:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ d48:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ d4c:	01 96       	adiw	r24, 0x01	; 1
+ d4e:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ d52:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ d56:	87 30       	cpi	r24, 0x07	; 7
+ d58:	91 05       	cpc	r25, r1
+ d5a:	9c f2       	brlt	.-90     	; 0xd02 <__stack+0x8a3>
+		PORTB =ub[i];
+		PORTC =uc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ d5c:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ d60:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ d64:	80 e0       	ldi	r24, 0x00	; 0
+ d66:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_v
+		PORTB =vb[i];
+ d68:	88 0f       	add	r24, r24
+ d6a:	99 1f       	adc	r25, r25
+ d6c:	ed e4       	ldi	r30, 0x4D	; 77
+ d6e:	f2 e0       	ldi	r31, 0x02	; 2
+ d70:	ec 0f       	add	r30, r28
+ d72:	fd 1f       	adc	r31, r29
+ d74:	e8 0f       	add	r30, r24
+ d76:	f9 1f       	adc	r31, r25
+ d78:	80 81       	ld	r24, Z
+ d7a:	88 bb       	out	0x18, r24	; 24
+		PORTC =vc[i];
+ d7c:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ d80:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ d84:	ee 0f       	add	r30, r30
+ d86:	ff 1f       	adc	r31, r31
+ d88:	8b e5       	ldi	r24, 0x5B	; 91
+ d8a:	92 e0       	ldi	r25, 0x02	; 2
+ d8c:	8c 0f       	add	r24, r28
+ d8e:	9d 1f       	adc	r25, r29
+ d90:	e8 0f       	add	r30, r24
+ d92:	f9 1f       	adc	r31, r25
+ d94:	80 81       	ld	r24, Z
+ d96:	85 bb       	out	0x15, r24	; 21
+ d98:	9f ef       	ldi	r25, 0xFF	; 255
+ d9a:	23 ec       	ldi	r18, 0xC3	; 195
+ d9c:	89 e0       	ldi	r24, 0x09	; 9
+ d9e:	91 50       	subi	r25, 0x01	; 1
+ da0:	20 40       	sbci	r18, 0x00	; 0
+ da2:	80 40       	sbci	r24, 0x00	; 0
+ da4:	e1 f7       	brne	.-8      	; 0xd9e <__stack+0x93f>
+ da6:	00 c0       	rjmp	.+0      	; 0xda8 <__stack+0x949>
+ da8:	00 00       	nop
+		PORTB =ub[i];
+		PORTC =uc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ daa:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ dae:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ db2:	01 96       	adiw	r24, 0x01	; 1
+ db4:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ db8:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ dbc:	87 30       	cpi	r24, 0x07	; 7
+ dbe:	91 05       	cpc	r25, r1
+ dc0:	9c f2       	brlt	.-90     	; 0xd68 <__stack+0x909>
+		PORTB =vb[i];
+		PORTC =vc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ dc2:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ dc6:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ dca:	80 e0       	ldi	r24, 0x00	; 0
+ dcc:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_w
+		PORTB =wb[i];
+ dce:	88 0f       	add	r24, r24
+ dd0:	99 1f       	adc	r25, r25
+ dd2:	e9 e6       	ldi	r30, 0x69	; 105
+ dd4:	f2 e0       	ldi	r31, 0x02	; 2
+ dd6:	ec 0f       	add	r30, r28
+ dd8:	fd 1f       	adc	r31, r29
+ dda:	e8 0f       	add	r30, r24
+ ddc:	f9 1f       	adc	r31, r25
+ dde:	80 81       	ld	r24, Z
+ de0:	88 bb       	out	0x18, r24	; 24
+		PORTC =wc[i];
+ de2:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ de6:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ dea:	ee 0f       	add	r30, r30
+ dec:	ff 1f       	adc	r31, r31
+ dee:	87 e7       	ldi	r24, 0x77	; 119
+ df0:	92 e0       	ldi	r25, 0x02	; 2
+ df2:	8c 0f       	add	r24, r28
+ df4:	9d 1f       	adc	r25, r29
+ df6:	e8 0f       	add	r30, r24
+ df8:	f9 1f       	adc	r31, r25
+ dfa:	80 81       	ld	r24, Z
+ dfc:	85 bb       	out	0x15, r24	; 21
+ dfe:	9f ef       	ldi	r25, 0xFF	; 255
+ e00:	23 ec       	ldi	r18, 0xC3	; 195
+ e02:	89 e0       	ldi	r24, 0x09	; 9
+ e04:	91 50       	subi	r25, 0x01	; 1
+ e06:	20 40       	sbci	r18, 0x00	; 0
+ e08:	80 40       	sbci	r24, 0x00	; 0
+ e0a:	e1 f7       	brne	.-8      	; 0xe04 <__stack+0x9a5>
+ e0c:	00 c0       	rjmp	.+0      	; 0xe0e <__stack+0x9af>
+ e0e:	00 00       	nop
+		PORTB =vb[i];
+		PORTC =vc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ e10:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ e14:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ e18:	01 96       	adiw	r24, 0x01	; 1
+ e1a:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ e1e:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ e22:	87 30       	cpi	r24, 0x07	; 7
+ e24:	91 05       	cpc	r25, r1
+ e26:	9c f2       	brlt	.-90     	; 0xdce <__stack+0x96f>
+		PORTB =wb[i];
+		PORTC =wc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ e28:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ e2c:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ e30:	80 e0       	ldi	r24, 0x00	; 0
+ e32:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_x
+		PORTB =xb[i];
+ e34:	88 0f       	add	r24, r24
+ e36:	99 1f       	adc	r25, r25
+ e38:	e5 e8       	ldi	r30, 0x85	; 133
+ e3a:	f2 e0       	ldi	r31, 0x02	; 2
+ e3c:	ec 0f       	add	r30, r28
+ e3e:	fd 1f       	adc	r31, r29
+ e40:	e8 0f       	add	r30, r24
+ e42:	f9 1f       	adc	r31, r25
+ e44:	80 81       	ld	r24, Z
+ e46:	88 bb       	out	0x18, r24	; 24
+		PORTC =xc[i];
+ e48:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ e4c:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ e50:	ee 0f       	add	r30, r30
+ e52:	ff 1f       	adc	r31, r31
+ e54:	83 e9       	ldi	r24, 0x93	; 147
+ e56:	92 e0       	ldi	r25, 0x02	; 2
+ e58:	8c 0f       	add	r24, r28
+ e5a:	9d 1f       	adc	r25, r29
+ e5c:	e8 0f       	add	r30, r24
+ e5e:	f9 1f       	adc	r31, r25
+ e60:	80 81       	ld	r24, Z
+ e62:	85 bb       	out	0x15, r24	; 21
+ e64:	9f ef       	ldi	r25, 0xFF	; 255
+ e66:	23 ec       	ldi	r18, 0xC3	; 195
+ e68:	89 e0       	ldi	r24, 0x09	; 9
+ e6a:	91 50       	subi	r25, 0x01	; 1
+ e6c:	20 40       	sbci	r18, 0x00	; 0
+ e6e:	80 40       	sbci	r24, 0x00	; 0
+ e70:	e1 f7       	brne	.-8      	; 0xe6a <__stack+0xa0b>
+ e72:	00 c0       	rjmp	.+0      	; 0xe74 <__stack+0xa15>
+ e74:	00 00       	nop
+		PORTB =wb[i];
+		PORTC =wc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ e76:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ e7a:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ e7e:	01 96       	adiw	r24, 0x01	; 1
+ e80:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ e84:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ e88:	87 30       	cpi	r24, 0x07	; 7
+ e8a:	91 05       	cpc	r25, r1
+ e8c:	9c f2       	brlt	.-90     	; 0xe34 <__stack+0x9d5>
+		PORTB =xb[i];
+		PORTC =xc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ e8e:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ e92:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ e96:	80 e0       	ldi	r24, 0x00	; 0
+ e98:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_y
+		PORTB =yb[i];
+ e9a:	88 0f       	add	r24, r24
+ e9c:	99 1f       	adc	r25, r25
+ e9e:	e1 ea       	ldi	r30, 0xA1	; 161
+ ea0:	f2 e0       	ldi	r31, 0x02	; 2
+ ea2:	ec 0f       	add	r30, r28
+ ea4:	fd 1f       	adc	r31, r29
+ ea6:	e8 0f       	add	r30, r24
+ ea8:	f9 1f       	adc	r31, r25
+ eaa:	80 81       	ld	r24, Z
+ eac:	88 bb       	out	0x18, r24	; 24
+		PORTC =yc[i];
+ eae:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ eb2:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ eb6:	ee 0f       	add	r30, r30
+ eb8:	ff 1f       	adc	r31, r31
+ eba:	8f ea       	ldi	r24, 0xAF	; 175
+ ebc:	92 e0       	ldi	r25, 0x02	; 2
+ ebe:	8c 0f       	add	r24, r28
+ ec0:	9d 1f       	adc	r25, r29
+ ec2:	e8 0f       	add	r30, r24
+ ec4:	f9 1f       	adc	r31, r25
+ ec6:	80 81       	ld	r24, Z
+ ec8:	85 bb       	out	0x15, r24	; 21
+ eca:	9f ef       	ldi	r25, 0xFF	; 255
+ ecc:	23 ec       	ldi	r18, 0xC3	; 195
+ ece:	89 e0       	ldi	r24, 0x09	; 9
+ ed0:	91 50       	subi	r25, 0x01	; 1
+ ed2:	20 40       	sbci	r18, 0x00	; 0
+ ed4:	80 40       	sbci	r24, 0x00	; 0
+ ed6:	e1 f7       	brne	.-8      	; 0xed0 <__stack+0xa71>
+ ed8:	00 c0       	rjmp	.+0      	; 0xeda <__stack+0xa7b>
+ eda:	00 00       	nop
+		PORTB =xb[i];
+		PORTC =xc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ edc:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ ee0:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ ee4:	01 96       	adiw	r24, 0x01	; 1
+ ee6:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ eea:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ eee:	87 30       	cpi	r24, 0x07	; 7
+ ef0:	91 05       	cpc	r25, r1
+ ef2:	9c f2       	brlt	.-90     	; 0xe9a <__stack+0xa3b>
+		PORTB =yb[i];
+		PORTC =yc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ ef4:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <__data_end+0x1>
+ ef8:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <__data_end>
+ efc:	80 e0       	ldi	r24, 0x00	; 0
+ efe:	90 e0       	ldi	r25, 0x00	; 0
+		//letter_z
+		PORTB =zb[i];
+ f00:	88 0f       	add	r24, r24
+ f02:	99 1f       	adc	r25, r25
+ f04:	ed eb       	ldi	r30, 0xBD	; 189
+ f06:	f2 e0       	ldi	r31, 0x02	; 2
+ f08:	ec 0f       	add	r30, r28
+ f0a:	fd 1f       	adc	r31, r29
+ f0c:	e8 0f       	add	r30, r24
+ f0e:	f9 1f       	adc	r31, r25
+ f10:	80 81       	ld	r24, Z
+ f12:	88 bb       	out	0x18, r24	; 24
+		PORTC =zc[i];
+ f14:	e0 91 58 02 	lds	r30, 0x0258	; 0x800258 <__data_end>
+ f18:	f0 91 59 02 	lds	r31, 0x0259	; 0x800259 <__data_end+0x1>
+ f1c:	ee 0f       	add	r30, r30
+ f1e:	ff 1f       	adc	r31, r31
+ f20:	8b ec       	ldi	r24, 0xCB	; 203
+ f22:	92 e0       	ldi	r25, 0x02	; 2
+ f24:	8c 0f       	add	r24, r28
+ f26:	9d 1f       	adc	r25, r29
+ f28:	e8 0f       	add	r30, r24
+ f2a:	f9 1f       	adc	r31, r25
+ f2c:	80 81       	ld	r24, Z
+ f2e:	85 bb       	out	0x15, r24	; 21
+ f30:	9f ef       	ldi	r25, 0xFF	; 255
+ f32:	23 ec       	ldi	r18, 0xC3	; 195
+ f34:	89 e0       	ldi	r24, 0x09	; 9
+ f36:	91 50       	subi	r25, 0x01	; 1
+ f38:	20 40       	sbci	r18, 0x00	; 0
+ f3a:	80 40       	sbci	r24, 0x00	; 0
+ f3c:	e1 f7       	brne	.-8      	; 0xf36 <__stack+0xad7>
+ f3e:	00 c0       	rjmp	.+0      	; 0xf40 <__stack+0xae1>
+ f40:	00 00       	nop
+		PORTB =yb[i];
+		PORTC =yc[i];
+		_delay_ms(200);
+		
+	}
+	for (i=0;i<7;i++){
+ f42:	80 91 58 02 	lds	r24, 0x0258	; 0x800258 <__data_end>
+ f46:	90 91 59 02 	lds	r25, 0x0259	; 0x800259 <__data_end+0x1>
+ f4a:	01 96       	adiw	r24, 0x01	; 1
+ f4c:	90 93 59 02 	sts	0x0259, r25	; 0x800259 <__data_end+0x1>
+ f50:	80 93 58 02 	sts	0x0258, r24	; 0x800258 <__data_end>
+ f54:	87 30       	cpi	r24, 0x07	; 7
+ f56:	91 05       	cpc	r25, r1
+ f58:	0c f0       	brlt	.+2      	; 0xf5c <__stack+0xafd>
+ f5a:	d1 ca       	rjmp	.-2654   	; 0x4fe <__stack+0x9f>
+ f5c:	d1 cf       	rjmp	.-94     	; 0xf00 <__stack+0xaa1>
+
+00000f5e <_exit>:
+ f5e:	f8 94       	cli
+
+00000f60 <__stop_program>:
+ f60:	ff cf       	rjmp	.-2      	; 0xf60 <__stop_program>

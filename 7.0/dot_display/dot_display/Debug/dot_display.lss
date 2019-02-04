@@ -1,0 +1,202 @@
+
+dot_display.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000110  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000184  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800060  00800060  00000184  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000184  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001b4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000038  00000000  00000000  000001f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000005ee  00000000  00000000  00000228  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000555  00000000  00000000  00000816  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000234  00000000  00000000  00000d6b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000009c  00000000  00000000  00000fa0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000036a  00000000  00000000  0000103c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000000cb  00000000  00000000  000013a6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  00001471  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 56 00 	jmp	0xac	; 0xac <__vector_7>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a2 36       	cpi	r26, 0x62	; 98
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 42 00 	call	0x84	; 0x84 <main>
+  74:	0c 94 86 00 	jmp	0x10c	; 0x10c <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <_Z13display_firstv>:
+
+}*/
+
+
+void display_first(){
+PORTB|= 0x1E;
+  7c:	88 b3       	in	r24, 0x18	; 24
+  7e:	8e 61       	ori	r24, 0x1E	; 30
+  80:	88 bb       	out	0x18, r24	; 24
+  82:	08 95       	ret
+
+00000084 <main>:
+uint16_t count = 0;
+void display_first();
+void display_last();
+int main(void)
+{
+    DDRD|= (1<<PIND4);
+  84:	8c 9a       	sbi	0x11, 4	; 17
+	sei();
+  86:	78 94       	sei
+	TCCR1B |= (1<<CS12)|(1<<CS10);      //set the prescalar to 1024
+  88:	8e b5       	in	r24, 0x2e	; 46
+  8a:	85 60       	ori	r24, 0x05	; 5
+  8c:	8e bd       	out	0x2e, r24	; 46
+	TCCR1B|= (1<<WGM12);                //set the CTC mode	
+  8e:	8e b5       	in	r24, 0x2e	; 46
+  90:	88 60       	ori	r24, 0x08	; 8
+  92:	8e bd       	out	0x2e, r24	; 46
+	TIMSK |= (1<<OCIE1A);
+  94:	89 b7       	in	r24, 0x39	; 57
+  96:	80 61       	ori	r24, 0x10	; 16
+  98:	89 bf       	out	0x39, r24	; 57
+	int degree;
+	degree = 1/(6*RPM) ;
+	OCR1A = degree*15625;	
+  9a:	1b bc       	out	0x2b, r1	; 43
+  9c:	1a bc       	out	0x2a, r1	; 42
+    while (1) 
+    {
+		display_first();
+  9e:	0e 94 3e 00 	call	0x7c	; 0x7c <_Z13display_firstv>
+  a2:	fd cf       	rjmp	.-6      	; 0x9e <main+0x1a>
+
+000000a4 <_Z12display_lastv>:
+
+void display_first(){
+PORTB|= 0x1E;
+}
+void display_last(){
+	PORTC|=0x1E;
+  a4:	85 b3       	in	r24, 0x15	; 21
+  a6:	8e 61       	ori	r24, 0x1E	; 30
+  a8:	85 bb       	out	0x15, r24	; 21
+  aa:	08 95       	ret
+
+000000ac <__vector_7>:
+		display_first();
+    }
+}
+
+
+ISR (TIMER1_COMPA_vect){
+  ac:	1f 92       	push	r1
+  ae:	0f 92       	push	r0
+  b0:	0f b6       	in	r0, 0x3f	; 63
+  b2:	0f 92       	push	r0
+  b4:	11 24       	eor	r1, r1
+  b6:	2f 93       	push	r18
+  b8:	3f 93       	push	r19
+  ba:	4f 93       	push	r20
+  bc:	5f 93       	push	r21
+  be:	6f 93       	push	r22
+  c0:	7f 93       	push	r23
+  c2:	8f 93       	push	r24
+  c4:	9f 93       	push	r25
+  c6:	af 93       	push	r26
+  c8:	bf 93       	push	r27
+  ca:	ef 93       	push	r30
+  cc:	ff 93       	push	r31
+	count ++;
+  ce:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+  d2:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <_edata+0x1>
+  d6:	01 96       	adiw	r24, 0x01	; 1
+  d8:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <_edata+0x1>
+  dc:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+	if (count == 180){
+  e0:	84 3b       	cpi	r24, 0xB4	; 180
+  e2:	91 05       	cpc	r25, r1
+  e4:	11 f4       	brne	.+4      	; 0xea <__vector_7+0x3e>
+ 	display_last();
+  e6:	0e 94 52 00 	call	0xa4	; 0xa4 <_Z12display_lastv>
+	}
+}
+  ea:	ff 91       	pop	r31
+  ec:	ef 91       	pop	r30
+  ee:	bf 91       	pop	r27
+  f0:	af 91       	pop	r26
+  f2:	9f 91       	pop	r25
+  f4:	8f 91       	pop	r24
+  f6:	7f 91       	pop	r23
+  f8:	6f 91       	pop	r22
+  fa:	5f 91       	pop	r21
+  fc:	4f 91       	pop	r20
+  fe:	3f 91       	pop	r19
+ 100:	2f 91       	pop	r18
+ 102:	0f 90       	pop	r0
+ 104:	0f be       	out	0x3f, r0	; 63
+ 106:	0f 90       	pop	r0
+ 108:	1f 90       	pop	r1
+ 10a:	18 95       	reti
+
+0000010c <_exit>:
+ 10c:	f8 94       	cli
+
+0000010e <__stop_program>:
+ 10e:	ff cf       	rjmp	.-2      	; 0x10e <__stop_program>
